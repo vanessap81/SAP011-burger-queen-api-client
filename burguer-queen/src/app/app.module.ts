@@ -8,10 +8,12 @@ import { AdminModule } from './components/admin/admin.module';
 import { LoginModule } from './components/login/login.module';
 import { KitchenModule } from './components/kitchen/kitchen.module';
 import { WaiterModule } from './components/waiter/waiter.module';
+import { ConfirmComponent } from './components/commons/confirm/confirm.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
