@@ -4,13 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { AdminModule } from './components/admin/admin.module';
+import { LoginModule } from './components/login/login.module';
+import { KitchenModule } from './components/kitchen/kitchen.module';
+import { WaiterModule } from './components/waiter/waiter.module';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AdminModule,
+    LoginModule,
+    KitchenModule,
+    WaiterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
