@@ -1,5 +1,16 @@
+* {
+    font-size: 1em;
+}
+
+p {
+    color: #fff; 
+    margin-bottom: 15px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
 #form {
-    padding-top: 60px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;

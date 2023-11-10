@@ -1,4 +1,11 @@
 .login-container {
+    display: flex;
+    flex-direction: column;
+    align-self: self-start;
+    align-items: center;
+}
+
+.container {
     width: 100%;
     height: 100%;
     background-color: #fff;
@@ -8,6 +15,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-self: self-start;
+    align-items: center;
 }
 
 .form-container {
