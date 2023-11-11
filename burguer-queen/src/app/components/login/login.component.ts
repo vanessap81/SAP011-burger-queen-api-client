@@ -1,26 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+import { Login } from 'src/app/Login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
-  
+  data = {};
 
-  ngOnInit(): void {
-    this.bemVindo();
-  }
+
+
+  ngOnInit(): void {}
 
   constructor(private loginService: LoginService) {}
 
-  bemVindo() {
-    console.log('OnInit do Login Component: Bem-vindo ao Angular!');
-  }
 
-  onSendData() {
-    console.log("Enviado do componente pai")
+  onSendData(login: Login) {
+    this.data = login;
+    console.log(this.data);
   }
 }
