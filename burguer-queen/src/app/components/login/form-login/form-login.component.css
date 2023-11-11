@@ -17,7 +17,14 @@ p {
     align-items: center;
 }
 
-input {
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
     width: 284px;
     height: 36px;
     padding: 0 12px;
@@ -27,7 +34,7 @@ input {
     margin-bottom: 20px;
 }
 
-button {
+#submit {
     width: 160px;
     height: 34px;
     border-radius: 10px;
