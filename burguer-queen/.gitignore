@@ -3,7 +3,7 @@
 # Compiled output
 /dist
 /tmp
-.tmp.driveupload
+./.tmp.driveupload
 /out-tsc
 /bazel-out
 
