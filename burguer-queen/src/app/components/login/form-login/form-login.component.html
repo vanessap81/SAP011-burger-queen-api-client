@@ -1,14 +1,28 @@
 <div id="form">
     <p>LOGIN</p>
-    <form (ngSubmit)="submit()">
-        <input class="input" type="email" placeholder="Digite seu email" name="email" required [(ngModel)]="email">
-        <input class="input" type="password" placeholder="Senha" name="password" required [(ngModel)]="password">
-        <select class="input select-option" required (change)="chooseRole($event)">
+    <form (ngSubmit)="submit()" [formGroup]="loginForm" #formDir="ngForm">
+
+        <input class="input" type="email" placeholder="Digite seu email" name="email" formControlName="emailControl">
+        <div *ngIf="emailControl.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="emailControl.errors?.['required']">O email é obrigatório</p>
+        </div>
+
+        <input class="input" type="password" placeholder="Senha" name="password" formControlName="passwordControl">
+        <div *ngIf="passwordControl.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="emailControl.errors?.['required']">A senha precisa ter 6 dígitos</p>
+        </div>
+
+        <select class="input select-option" formControlName="roleControl" (change)="chooseRole($event)">
             <option default>Função</option>
             <option [value]="roles[0]">Admin</option>
             <option [value]="roles[1]">Cozinha</option>
             <option [value]="roles[2]">Garçom</option>
         </select>
+        <div *ngIf="roleControl.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="emailControl.errors?.['required']">A função é obrigatória</p>
+        </div>
+
         <input type="submit" id="submit" value="ENTRAR" (click)="handleClick()">
+
     </form>
 </div>

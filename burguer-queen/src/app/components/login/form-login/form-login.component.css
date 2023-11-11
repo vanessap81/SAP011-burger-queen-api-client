@@ -2,13 +2,6 @@
     font-size: 1em;
 }
 
-p {
-    color: #fff; 
-    margin-bottom: 25px;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
 #form {
     padding-top: 30px;
     display: flex;
@@ -24,6 +17,20 @@ form {
     align-items: center;
 }
 
+#form p {
+    color: #fff; 
+    margin-bottom: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+.validation-error p {
+    margin: 0;
+    font-size: .4em;
+    font-weight: 300;
+}
+
 .input {
     width: 284px;
     height: 36px;
@@ -31,12 +38,13 @@ form {
     border-radius: 14px;
     background: #fff;
     opacity: 0.55;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #submit {
     width: 160px;
     height: 34px;
+    margin: 20px 0;
     border-radius: 10px;
     background: #fff;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
