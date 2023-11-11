@@ -1,8 +1,14 @@
 <div id="form">
     <p>LOGIN</p>
-    <form action="">
-        <input class="input" type="email" placeholder="Digite seu email" name="email" [(ngModel)]="email">
-        <input class="input" type="password" placeholder="Senha" name="password" [(ngModel)]="password">
+    <form (ngSubmit)="submit()">
+        <input class="input" type="email" placeholder="Digite seu email" name="email" required [(ngModel)]="email">
+        <input class="input" type="password" placeholder="Senha" name="password" required [(ngModel)]="password">
+        <select class="input select-option" required (change)="chooseRole($event)">
+            <option default>Função</option>
+            <option [value]="roles[0]">Admin</option>
+            <option [value]="roles[1]">Cozinha</option>
+            <option [value]="roles[2]">Garçom</option>
+        </select>
         <input type="submit" id="submit" value="ENTRAR" (click)="handleClick()">
     </form>
 </div>
