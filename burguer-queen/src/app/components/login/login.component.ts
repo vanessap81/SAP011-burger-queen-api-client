@@ -10,14 +10,19 @@ import { Login } from 'src/app/Login';
 
 export class LoginComponent implements OnInit {
 
-  // data = {};
+  data: string = '';
 
   ngOnInit(): void {}
 
-  constructor(private loginService: LoginService) {}
+  constructor() {
+
+  }
 
 
   onSendData() {
-    console.log('Emitido do componente pai');
+    // console.log('Emitido do componente pai');
   }
 }
+
+
+// constructor(private loginService: LoginService) {}

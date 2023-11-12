@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Login } from 'src/app/Login';
 
 @Component({
@@ -11,36 +12,47 @@ export class FormLoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   roles = ['admin', 'kitchen', 'waiter'];
-  selectedRole: string = '';
+  role: string = '';
 
-  // loginData: Login = {
-  //   email: this.email,
-  //   password: this.password,
-  //   role: this.selectedRole
-  // }
+  // @Input() email: string;
 
-  @Output() sendData: EventEmitter<any> = new EventEmitter();
+  loginForm!: FormGroup;
+
+  @Output() sendData = new EventEmitter<string>();
   
-  constructor(){}
+  constructor(){
+    this.email = '';
+    this.password = '';
+    this.role = '';
 
-  ngOnInit(): void {
-      
+    this.loginForm = new FormGroup({
+      email: new FormControl,
+      password: new FormControl,
+      role: new FormControl
+    })
   }
+
+  ngOnInit(): void {}
+
+  // get emailForm() {
+  //   return this.loginForm.get('email');
+  // }
 
   chooseRole(e: Event) {
     const target = e.target as HTMLInputElement;
-    const value = target.value;
-    this.selectedRole = value;
-    // console.log(this.selectedRole);
+    this.role = target.value;
   }
 
   submit(): void {
-    console.log('Do submit', this.email, this.password, this.selectedRole);
-    console.log('Do submit: Enviou formulário')
+    if(this.loginForm.invalid) {
+      return
+    };
+
+    console.log(this.loginForm.value);
+    console.log('Do submit: Enviou formulário');
   }
 
-  handleClick() {
-
-    this.sendData.emit();
+  handleClick(data: string) {
+    this.sendData.emit(data);
   }
 }
