@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormsModule, FormGroup, FormControl } from '@angular/forms';
 import { Login } from 'src/app/Login';
+// import { Login } from 'src/app/Login';
 
 @Component({
   selector: 'app-form-login',
@@ -18,7 +19,7 @@ export class FormLoginComponent implements OnInit {
 
   loginForm!: FormGroup;
 
-  @Output() sendData = new EventEmitter<string>();
+  @Output() onSubmit = new EventEmitter<Login>();
   
   constructor(){
     this.email = '';
@@ -45,14 +46,12 @@ export class FormLoginComponent implements OnInit {
 
   submit(): void {
     if(this.loginForm.invalid) {
+      console.log('Formulário inválido');
       return
     };
 
-    console.log(this.loginForm.value);
-    console.log('Do submit: Enviou formulário');
-  }
-
-  handleClick(data: string) {
-    this.sendData.emit(data);
+    this.onSubmit.emit(this.loginForm.value);
+    // console.log(this.loginForm.value);
+    // console.log('Do submit: Enviou formulário');
   }
 }
