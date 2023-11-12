@@ -13,13 +13,13 @@ export class FormLoginComponent implements OnInit {
   roles = ['admin', 'kitchen', 'waiter'];
   selectedRole: string = '';
 
-  loginData: Login = {
-    email: this.email,
-    password: this.password,
-    role: this.selectedRole
-  }
+  // loginData: Login = {
+  //   email: this.email,
+  //   password: this.password,
+  //   role: this.selectedRole
+  // }
 
-  @Output() sendData = new EventEmitter<Login>();
+  @Output() sendData: EventEmitter<any> = new EventEmitter();
   
   constructor(){}
 
@@ -31,15 +31,16 @@ export class FormLoginComponent implements OnInit {
     const target = e.target as HTMLInputElement;
     const value = target.value;
     this.selectedRole = value;
-    console.log(this.selectedRole);
+    // console.log(this.selectedRole);
   }
 
   submit(): void {
-    console.log(this.loginData);
-    console.log('Enviou formulário')
+    console.log('Do submit', this.email, this.password, this.selectedRole);
+    console.log('Do submit: Enviou formulário')
   }
 
   handleClick() {
+
     this.sendData.emit();
   }
 }
