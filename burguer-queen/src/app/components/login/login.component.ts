@@ -14,9 +14,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  constructor() {
-
-  }
+  constructor(private loginService: LoginService) {}
 
   async createHandler(form: Login) {
     const formData = new FormData();
@@ -26,7 +24,11 @@ export class LoginComponent implements OnInit {
     formData.append("role", form.role);
 
     console.log(form);
+
+    this.loginService.login(formData).subscribe();
   }
+
+  
 }
 
 
