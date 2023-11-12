@@ -31,15 +31,15 @@ export class FormLoginComponent implements OnInit {
     const target = e.target as HTMLInputElement;
     const value = target.value;
     this.selectedRole = value;
-    // console.log(value);
+    console.log(this.selectedRole);
   }
 
   submit(): void {
+    console.log(this.loginData);
     console.log('Enviou formulário')
   }
 
   handleClick() {
-    // console.log(this.loginData);
-    this.sendData.emit(this.loginData);
+    this.sendData.emit();
   }
 }
