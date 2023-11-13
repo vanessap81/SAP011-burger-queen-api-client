@@ -17,15 +17,16 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) {}
 
   async createHandler(form: Login) {
-    const formData = new FormData();
-
-    formData.append("email", form.email);
-    formData.append("password", form.password);
-    formData.append("role", form.role);
+    // const formData = new FormData();
+    // const formData = form;
+    // formData.append("email", form.email);
+    // formData.append("password", form.password);
+    // formData.append("role", form.role);
 
     console.log(form);
+    // this.loginService.login(formData).subscribe();
 
-    this.loginService.login(formData).subscribe();
+    this.loginService.login(form).subscribe();
   }
 
   
