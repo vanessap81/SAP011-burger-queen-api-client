@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
-import { Login } from '../Login';
+import { Login } from '../interfaces/Login';
 import { HttpHeaders } from '@angular/common/http';
-import { LoginResponse } from '../LoginResponse';
+import { LoginResponse } from '../interfaces/LoginResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ import { LoginResponse } from '../LoginResponse';
 export class LoginService {
   private readonly apiUrl = 'http://localhost:8080/login';
 
-
-  constructor(private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
   login(form: Login): Observable<LoginResponse> {
     console.log(form);
@@ -24,4 +24,12 @@ export class LoginService {
     return this.http.post<LoginResponse>(this.apiUrl, form, { 'headers': headers });
     // .then para manipular a response
   }
+
+  // set(key: string, value: any): boolean {
+  //   if (this._storage) {
+  //     this._storage.setItem(key, JSON.stringify(value));
+  //     return true;
+  //   }
+  //   return false;
+  // }
 }

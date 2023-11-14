@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormsModule, FormGroup, FormControl } from '@angular/forms';
-import { Login } from 'src/app/Login';
+import { Login } from 'src/app/interfaces/Login';
 // import { Login } from 'src/app/Login';
 
 @Component({
@@ -12,7 +12,7 @@ import { Login } from 'src/app/Login';
 export class FormLoginComponent implements OnInit {
   email: string = '';
   password: string = '';
-  roles = ['admin', 'kitchen', 'waiter'];
+  roles = ['admin', 'chef', 'waiter'];
   role: string = '';
 
   chooseRole(e: Event) {
