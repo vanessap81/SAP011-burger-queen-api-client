@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Login } from 'src/app/Login';
+import { LoginResponse } from 'src/app/LoginResponse';
 
 @Component({
   selector: 'app-login',
@@ -14,22 +15,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  constructor(private loginService: LoginService) {}
+  constructor(
+    private _loginService: LoginService,
+    private _storage: Storage
+    ) {}
 
   async createHandler(form: Login) {
-    // const formData = new FormData();
-    // const formData = form;
-    // formData.append("email", form.email);
-    // formData.append("password", form.password);
-    // formData.append("role", form.role);
-
     console.log(form);
-    // this.loginService.login(formData).subscribe();
-
-    this.loginService.login(form).subscribe();
+    this._loginService.login(form).subscribe({
+      next: (data: LoginResponse) => {
+        console.log(data);
+      }
+    });
   }
-
   
+  set(key: string, value: string) {
+    this._storage.setItem(key, value);
+  }
 }
 
 

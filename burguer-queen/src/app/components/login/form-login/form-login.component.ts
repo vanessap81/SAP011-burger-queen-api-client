@@ -15,7 +15,10 @@ export class FormLoginComponent implements OnInit {
   roles = ['admin', 'kitchen', 'waiter'];
   role: string = '';
 
-  // @Input() email: string;
+  chooseRole(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.role = target.value;
+  }
 
   loginForm!: FormGroup;
 
@@ -35,15 +38,6 @@ export class FormLoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // get emailForm() {
-  //   return this.loginForm.get('email');
-  // }
-
-  chooseRole(e: Event) {
-    const target = e.target as HTMLInputElement;
-    this.role = target.value;
-  }
-
   submit(): void {
     if(this.loginForm.invalid) {
       console.log('Formulário inválido');
@@ -51,7 +45,5 @@ export class FormLoginComponent implements OnInit {
     };
 
     this.onSubmit.emit(this.loginForm.value);
-    // console.log(this.loginForm.value);
-    // console.log('Do submit: Enviou formulário');
   }
 }

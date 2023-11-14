@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Login } from '../Login';
 import { HttpHeaders } from '@angular/common/http';
+import { LoginResponse } from '../LoginResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,13 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  login(form: Login): Observable<Login> {
+  login(form: Login): Observable<LoginResponse> {
     console.log(form);
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*');
 
-    return this.http.post<Login>(this.apiUrl, form, { 'headers': headers });
+    return this.http.post<LoginResponse>(this.apiUrl, form, { 'headers': headers });
     // .then para manipular a response
   }
 }
