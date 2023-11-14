@@ -2,7 +2,8 @@
     <div class="login-container">
         <app-top-icon></app-top-icon>
         <div class="form-container">
-            <app-form-login (onSubmit)="createHandler($event)" ></app-form-login>
+            <app-form-login (onSubmit)="authentication($event)" ></app-form-login>
+            <!-- <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> -->
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Login } from 'src/app/interfaces/Login';
 // import { Login } from 'src/app/Login';
 
@@ -47,3 +47,7 @@ export class FormLoginComponent implements OnInit {
     this.onSubmit.emit(this.loginForm.value);
   }
 }
+
+  // get emailControl() {
+  //   return this.loginForm.get('emailControl')!;
+  // }
