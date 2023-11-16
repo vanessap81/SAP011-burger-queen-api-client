@@ -32,7 +32,17 @@ export class LoginComponent implements OnInit {
         this.storage.setItem('token', data.acessToken);
         const token = window.localStorage.getItem('token');
         const userRole = data.role;
-        this._route.navigate([`/${userRole}`])
+        switch (userRole) {
+          case 'waiter':
+            return this._route.navigate(['/waiter/tables']);
+          case 'kitchen':
+            return this._route.navigate(['/kitchen']);
+          case 'admin':
+            return this._route.navigate(['/admin']);
+          default:
+            return this._route.parseUrl('');
+        }
+        // this._route.navigate([`/${userRole}`])
       }
     });
   }
