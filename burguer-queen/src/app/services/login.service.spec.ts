@@ -5,7 +5,7 @@ import { Login } from '../interfaces/Login';
 import { LoginService } from './login.service';
 import { HttpClient } from '@angular/common/http';
 
-fdescribe('LoginService', () => {
+describe('LoginService', () => {
   let service: LoginService;
   let http: HttpClient;
   let form: Login
