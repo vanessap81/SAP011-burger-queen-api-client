@@ -1,0 +1,13 @@
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #9400FF;
+    background-image: url('../../../assets/backgroung-waiter.png');
+    background-repeat: no-repeat;
+    /* padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: self-start;
+    align-items: center; */
+}

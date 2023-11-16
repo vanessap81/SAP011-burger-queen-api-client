@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   data?: string = '';
   storage: Storage;
-  errorLogin: boolean = false;
+  // errorLogin: boolean = false;
 
   ngOnInit(): void {}
 
