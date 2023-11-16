@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class TablesComponent {
 
+  OnInit() {}
+
+  constructor() {}
+  
+  teste() {
+    console.log('clicou')
+  }
 }

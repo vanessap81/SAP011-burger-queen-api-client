@@ -8,19 +8,21 @@ import { OrdersStatusComponent } from './orders-status/orders-status.component';
 const routes: Routes = [
   {
     path: '',
-    component:WaiterComponent
-  },
-  {
-    path: 'menu',
-    component:MenuComponent
-  },
-  {
-    path: 'tables',
-    component:TablesComponent
-  },
-  {
-    path: 'orders-status',
-    component:OrdersStatusComponent
+    component:WaiterComponent,
+    children: [
+      {
+        path: 'tables',
+        component:TablesComponent
+      },
+      {
+        path: 'menu',
+        component:MenuComponent
+      },
+      {
+        path: 'orders-status',
+        component:OrdersStatusComponent
+      }
+    ]
   }
 ];
 
