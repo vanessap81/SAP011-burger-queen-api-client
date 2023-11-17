@@ -21,7 +21,7 @@
 
 .form-container {
     width: 380px;
-    height: 320px;
+    height: fit-content;
     border-radius: 30px;
     background: #6f1ab6;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.35);

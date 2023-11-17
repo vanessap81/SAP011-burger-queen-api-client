@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, afterNextRender } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Login } from 'src/app/interfaces/Login';
 import { LoginResponse } from 'src/app/interfaces/LoginResponse';
 

@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { AdminModule } from './components/admin/admin.module';
 import { LoginModule } from './components/login/login.module';
 import { KitchenModule } from './components/kitchen/kitchen.module';

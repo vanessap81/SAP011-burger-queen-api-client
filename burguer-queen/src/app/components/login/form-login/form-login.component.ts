@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Login } from 'src/app/interfaces/Login';
 // import { Login } from 'src/app/Login';
 
@@ -24,15 +25,15 @@ export class FormLoginComponent implements OnInit {
 
   @Output() onSubmit = new EventEmitter<Login>();
   
-  constructor(){
+  constructor(private formBuilder: FormBuilder){
     this.email = '';
     this.password = '';
     this.role = '';
 
-    this.loginForm = new FormGroup({
-      email: new FormControl,
-      password: new FormControl,
-      role: new FormControl
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      role: ['', [Validators.required]]
     })
   }
 
@@ -51,3 +52,9 @@ export class FormLoginComponent implements OnInit {
   // get emailControl() {
   //   return this.loginForm.get('emailControl')!;
   // }
+
+  // this.loginForm = new FormGroup({
+  //   email: new FormControl('', Validators.required),
+  //   password: new FormControl('', Validators.required),
+  //   role: new FormControl('', Validators.required)
+  // })
