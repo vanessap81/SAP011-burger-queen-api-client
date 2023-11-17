@@ -45,7 +45,7 @@ form {
 
 .validation-error {
     margin: 0;
-    font-size: 1em;
+    font-size: 0.9em;
     color: #fff;
     opacity: 0.75;
 }
