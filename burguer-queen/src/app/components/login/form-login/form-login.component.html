@@ -2,11 +2,11 @@
     <p>LOGIN</p>
     <form (ngSubmit)="submit()" [formGroup]="loginForm">
         <input class="input" type="email" placeholder="Digite seu email" name="email" required formControlName="email">
-        <div *ngIf="loginForm.get('email')?.errors" class="validation-error">
+        <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="validation-error">
             O email é obrigatório
         </div>
         <input class="input" type="password" placeholder="Senha" name="password" required formControlName="password" minlength="6">
-        <div *ngIf="loginForm.get('password')?.errors" class="validation-error">
+        <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="validation-error">
             A senha precisa ter 6 dígitos
         </div>
         <select class="input select-option" required (change)="chooseRole($event)" formControlName="role">
@@ -15,7 +15,7 @@
             <option [value]="roles[1]">Cozinha</option>
             <option [value]="roles[2]">Garçom</option>
         </select>
-        <div *ngIf="loginForm.get('role')?.errors" class="validation-error">
+        <div *ngIf="loginForm.get('role')?.errors && loginForm.get('role')?.touched" class="validation-error">
             A função é obrigatória
         </div>
         <input type="submit" id="submit" value="ENTRAR">
