@@ -67,4 +67,34 @@ main {
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.60);
     box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-info {
+    width: 350px;
+    height: 41px;
+    margin-top: 15px;
+    /* display: none; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+.order-info p {
+    height: 80%;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: #FFF;
+    border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 5px 20px;
+}
+
+.selected-products {
+    width: 350px;
 }

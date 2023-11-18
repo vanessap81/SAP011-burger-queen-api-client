@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-waiter',
@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./waiter.component.css']
 })
 export class WaiterComponent {
+
+  data = ''
+
+  @Input() clientNameAndTable = new EventEmitter<any>();
+
+  OnInit() {}
+
+  constructor() {}
 
 }

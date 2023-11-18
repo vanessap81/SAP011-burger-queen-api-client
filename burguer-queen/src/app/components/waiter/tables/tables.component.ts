@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-tables',
@@ -9,32 +8,24 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class TablesComponent {
 
   tableStatus: string = 'SEM PEDIDOS';
-  selectedButton: boolean = false;
+  selectedButton = {selected: false, tableNumber: ''};
   clienteName: string = '';
   isAllReady: boolean = false;
-  tables = [{number: '01'}, {number: '02'}, {number: '03'}, {number: '04'}, {number: '05'}, {number: '06'},{number: '07'}, {number: '08'}, {number: '09'}, {number: '10'}, {number: '11'}, {number: '12'}]
-  tableNumber: string = '';
-  countingClicks: string[] = [];
+  tables = [{number: '01'}, {number: '02'}, {number: '03'}, {number: '04'}, {number: '05'}, {number: '06'},{number: '07'}, {number: '08'}, {number: '09'}, {number: '10'}, {number: '11'}, {number: '12'}];
+  orderData = {name: '', tableNumber: ''};
+
   // tableForm: FormGroup
+
+  @Output() clientNameAndTable = new EventEmitter<any>();
 
   OnInit() {}
 
-  constructor() {
-
-  }
+  constructor() {}
   
   checkTable(value: string) {
-    this.countingClicks.push(value);
-    console.log(this.countingClicks);
-
-    if(this.countingClicks.length % 2 === 1) {
-      this.selectedButton = true;
-      this.tableNumber = value;
-      // adicionar classe selected para manter a cor branca
-      console.log(this.selectedButton);
-    }
-
-
+    this.selectedButton.selected = true;
+    this.selectedButton.tableNumber = value;
+    console.log(this.selectedButton);
   }
 
   prepareTable(event: Event) {
@@ -42,15 +33,16 @@ export class TablesComponent {
     this.clienteName = target.value;
     console.log(this.clienteName);
 
-    if(this.selectedButton === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
+    if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
       this.isAllReady = !this.isAllReady;
-      console.log(this.clienteName, this.tableNumber, 'mesa pronta');
+      console.log(this.clienteName, this.selectedButton.tableNumber, 'mesa pronta');
     } else {
       this.isAllReady = false;
     }
   }
 
   startOrder() {
-    console.log('pedido iniciado')
+    this.clientNameAndTable.emit(this.orderData);
+    console.log('dados enviados')
   }
 }

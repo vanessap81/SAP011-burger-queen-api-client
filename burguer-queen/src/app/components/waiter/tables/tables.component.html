@@ -7,10 +7,16 @@
     </header>
     <main>
         <div class="tables-grid">
-            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.number)" value="`${{table.number}}`"><p class="table">mesa</p><p class="number">{{table.number}}</p></button>
+            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.number)" value="`${{table.number}}`" [class.selected]="selectedButton.tableNumber === table.number">
+                <p class="table">mesa</p>
+                <p class="number">{{table.number}}</p>
+            </button>
         </div>
         <div class="details-screen">
-            <div class="table-detail" *ngIf="selectedButton"><p>Status: </p><p>{{ tableStatus | uppercase }}</p></div>
+            <div class="table-detail" *ngIf="selectedButton.selected === true"><p>Status: </p><p>{{ tableStatus | uppercase }}</p></div>
         </div>
     </main>
 </section>
+
+
+<!-- [class.selected]="selectedButton.tableNumber === table.number && selectedButton.lastClicked !== '00'" -->
