@@ -32,6 +32,11 @@ header input {
     color: #6F1AB6;
 }
 
+header button:disabled {
+    box-shadow: none;
+    opacity: 0.75;
+}
+
 #logout {
     width: 54px;
     border-radius: 50%;
@@ -85,6 +90,10 @@ main {
     border: 2px solid #FFF;
 }
 
+.tables .selected {
+    background: #FFF;
+}
+
 .tables .table {
     font-size: 20px;
 }
@@ -115,6 +124,7 @@ main {
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 15px;
+    /* display: none; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
