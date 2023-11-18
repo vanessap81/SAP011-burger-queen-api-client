@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TablesComponent {
 
+  tableStatus: string = '';
+
   OnInit() {}
 
   constructor() {}
