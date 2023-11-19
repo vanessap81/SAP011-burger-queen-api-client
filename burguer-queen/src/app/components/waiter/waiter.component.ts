@@ -1,18 +1,24 @@
-import { Component, EventEmitter, Input} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { WaiterService } from 'src/app/services/waiter.service';
+import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 
 @Component({
   selector: 'app-waiter',
   templateUrl: './waiter.component.html',
   styleUrls: ['./waiter.component.css']
 })
-export class WaiterComponent {
+export class WaiterComponent implements OnInit {
 
-  data = ''
+  data?: any = '';
+  productsList: ProductResponse[] = [];
 
-  @Input() clientNameAndTable = new EventEmitter<any>();
+  ngOnInit(): void {}
 
-  OnInit() {}
-
-  constructor() {}
-
+  constructor(private readonly _SERVICE: WaiterService) {
+    this._SERVICE.getProducts().subscribe((data) => {
+      this.productsList = data;
+      console.log(this.productsList);
+    })
+  }
+  
 }
