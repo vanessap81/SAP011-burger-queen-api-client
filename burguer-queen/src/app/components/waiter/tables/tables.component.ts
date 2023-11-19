@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tables',
@@ -15,23 +16,29 @@ export class TablesComponent {
   orderData = {name: '', tableNumber: ''};
 
   // tableForm: FormGroup
+  storage: Storage;
 
   @Output() clientNameAndTable = new EventEmitter<any>();
 
   OnInit() {}
 
-  constructor() {}
+  constructor(
+    private _route: Router,
+  ) {
+    this.storage = window.localStorage
+  }
   
   checkTable(value: string) {
     this.selectedButton.selected = true;
     this.selectedButton.tableNumber = value;
-    console.log(this.selectedButton);
+    this.orderData.tableNumber = value;
   }
 
   prepareTable(event: Event) {
     const target = event.target as HTMLInputElement;
     this.clienteName = target.value;
-    console.log(this.clienteName);
+    this.orderData.name = target.value;
+    console.log(this.orderData);
 
     if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
       this.isAllReady = !this.isAllReady;
@@ -43,6 +50,9 @@ export class TablesComponent {
 
   startOrder() {
     this.clientNameAndTable.emit(this.orderData);
-    console.log('dados enviados')
+    console.log(this.orderData);
+    this.storage.setItem('clientName', this.orderData.name);
+    this.storage.setItem('tableNumber', this.orderData.tableNumber);
+    return this._route.navigate(['/menu']);
   }
 }
