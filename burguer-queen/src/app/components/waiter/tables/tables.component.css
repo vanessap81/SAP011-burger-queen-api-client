@@ -20,8 +20,11 @@ header {
     /* border: solid 1px #fff; */
 }
 
-header button,
-header input {
+header h1 {
+    color: #FFF;
+}
+
+header button {
     height: 54px;
     border-radius: 20px;
     background: #FFF;
@@ -43,8 +46,13 @@ header button:disabled {
 }
 
 input {
-    width: 410px;
+    width: 280px;
+    height: 54px;
     padding-left: 20px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #FFF;
+    background-color: #9400FF;
 }
 
 #start-order {

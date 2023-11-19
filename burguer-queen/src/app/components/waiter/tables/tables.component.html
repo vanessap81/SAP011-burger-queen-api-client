@@ -1,7 +1,8 @@
 <section class="tables-container">
     <header>
         <button id="logout"></button>
-        <input class="clientName" type="text" placeholder="Nome do cliente" name="clientName" (blur)="prepareTable($event)">
+        <h1>Nome do cliente:</h1>
+        <input class="clientName" type="text" name="clientName" (blur)="prepareTable($event)">
         <button class="orders" id="start-order" [disabled]="!isAllReady" (click)="startOrder()">INICIAR PEDIDO</button>
         <button class="orders" id="order-status">VER STATUS</button>
     </header>

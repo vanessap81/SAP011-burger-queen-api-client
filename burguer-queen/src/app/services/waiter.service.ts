@@ -21,7 +21,7 @@ export class WaiterService {
 
   getProducts(): Observable<any> {
     const token: any = window.localStorage.getItem('token');
-    console.log(token);
+    // console.log(token);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

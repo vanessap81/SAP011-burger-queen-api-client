@@ -1,11 +1,39 @@
 <section class="menu-container">
     <header>
-        <input type="text" class="client-name" placeholder="Nome do cliente">
+        <h1>Nome do cliente:</h1>
+        <div class="client-name"></div>
+        <h1>Mesa:</h1>
+        <div class="client-table"></div>
         <a routerLink="/tables" class="back"><i class="bi bi-arrow-left-circle-fill"></i>Voltar</a>
     </header>
     <main>
         <div class="menu">
-
+                <h1>CAFÉ DA MANHÃ</h1>
+                <ul class="breakfast">
+                    <li *ngFor="let product of breakfastProducts">
+                        <p>{{product.name}}</p>
+                        <img src="" alt="">
+                        <p>R$ {{product.price}}</p>
+                        <div class="quantity-container">
+                            <button class="quantityButtons">-</button>
+                            <p>{{quantity}}</p>
+                            <button class="quantityButtons">+</button>
+                        </div>
+                    </li>
+                </ul>
+                <h1>MENU DO DIA</h1>
+                <ul class="todaysMenu">
+                    <li *ngFor="let product of todaysProducts">
+                        <p>{{product.name}}</p>
+                        <img src="" alt="">
+                        <p>R$ {{product.price}}</p>
+                        <div class="quantity-container">
+                            <button class="quantityButtons">-</button>
+                            <p>{{quantity}}</p>
+                            <button class="quantityButtons">+</button>
+                        </div>
+                    </li>
+                </ul>
         </div>
         <div class="details-screen">
             <div class="order-info">
@@ -14,9 +42,6 @@
                 <p>Valor</p>
             </div>
             <div class="selected-products">
-                <ul>
-                    <li></li>
-                </ul>
             </div>
         </div>
     </main>
