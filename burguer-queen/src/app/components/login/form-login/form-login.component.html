@@ -1,0 +1,32 @@
+<div id="form">
+    <p>LOGIN</p>
+    <form (ngSubmit)="submit()" [formGroup]="loginForm">
+        <input class="input" type="email" placeholder="Digite seu email" name="email" required formControlName="email">
+        <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="validation-error">
+            O email é obrigatório
+        </div>
+        <input class="input" type="password" placeholder="Senha" name="password" required formControlName="password" minlength="6">
+        <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="validation-error">
+            A senha precisa ter 6 dígitos
+        </div>
+        <select class="input select-option" required (change)="chooseRole($event)" formControlName="role">
+            <option default>FUNÇÃO</option>
+            <option [value]="roles[0]">Admin</option>
+            <option [value]="roles[1]">Cozinha</option>
+            <option [value]="roles[2]">Garçom</option>
+        </select>
+        <div *ngIf="loginForm.get('role')?.errors && loginForm.get('role')?.touched" class="validation-error">
+            A função é obrigatória
+        </div>
+        <input type="submit" id="submit" value="ENTRAR">
+    </form>
+</div>
+
+<!-- formControlName="email" -->
+<!-- [(ngModel)]="emailInput" -->
+<!-- [(ngModel)]="password" --
+<!-- formControlName="emailControl" -->
+        <!-- <div *ngIf="emailControl.invalid && formDir.submitted" class="validation-error">
+            <p *ngIf="emailControl.errors?.['required']">O email é obrigatório</p>
+        </div> -->
+        <!-- #formDir="ngForm" -->
