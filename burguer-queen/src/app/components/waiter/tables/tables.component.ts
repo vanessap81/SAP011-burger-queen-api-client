@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tables',
@@ -7,11 +8,51 @@ import { Component } from '@angular/core';
 })
 export class TablesComponent {
 
+  tableStatus: string = 'SEM PEDIDOS';
+  selectedButton = {selected: false, tableNumber: ''};
+  clienteName: string = '';
+  isAllReady: boolean = false;
+  tables = [{number: '01'}, {number: '02'}, {number: '03'}, {number: '04'}, {number: '05'}, {number: '06'},{number: '07'}, {number: '08'}, {number: '09'}, {number: '10'}, {number: '11'}, {number: '12'}];
+  orderData = {name: '', tableNumber: ''};
+
+  // tableForm: FormGroup
+  storage: Storage;
+
+  @Output() clientNameAndTable = new EventEmitter<any>();
+
   OnInit() {}
 
-  constructor() {}
+  constructor(
+    private _route: Router,
+  ) {
+    this.storage = window.localStorage
+  }
   
-  teste() {
-    console.log('clicou')
+  checkTable(value: string) {
+    this.selectedButton.selected = true;
+    this.selectedButton.tableNumber = value;
+    this.orderData.tableNumber = value;
+  }
+
+  prepareTable(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.clienteName = target.value;
+    this.orderData.name = target.value;
+    console.log(this.orderData);
+
+    if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
+      this.isAllReady = !this.isAllReady;
+      console.log(this.clienteName, this.selectedButton.tableNumber, 'mesa pronta');
+    } else {
+      this.isAllReady = false;
+    }
+  }
+
+  startOrder() {
+    this.clientNameAndTable.emit(this.orderData);
+    console.log(this.orderData);
+    this.storage.setItem('clientName', this.orderData.name);
+    this.storage.setItem('tableNumber', this.orderData.tableNumber);
+    return this._route.navigate(['/menu']);
   }
 }

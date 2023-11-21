@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     this._loginService.login(form).subscribe({
       next: (data: LoginResponse) => {
         this.storage.setItem('token', data.acessToken);
-        const token = window.localStorage.getItem('token');
         const userRole = data.role;
         switch (userRole) {
           case 'waiter':

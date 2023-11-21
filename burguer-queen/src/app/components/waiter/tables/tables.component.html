@@ -1,27 +1,23 @@
 <section class="tables-container">
     <header>
         <button id="logout"></button>
-        <input type="text" placeholder="Nome do cliente">
-        <button class="orders" id="start-order"><a routerLink="/menu">INICIAR PEDIDO</a></button>
-        <button class="orders" id="order-status"><a routerLink="/orders-status">VER STATUS</a></button>
+        <h1>Nome do cliente:</h1>
+        <input class="clientName" type="text" name="clientName" (blur)="prepareTable($event)">
+        <button class="orders" id="start-order" [disabled]="!isAllReady" (click)="startOrder()">INICIAR PEDIDO</button>
+        <button class="orders" id="order-status">VER STATUS</button>
     </header>
     <main>
         <div class="tables-grid">
-            <button class="tables" (click)="teste()"><p class="table">mesa</p><p class="number">01</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">02</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">03</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">04</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">05</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">06</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">07</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">08</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">09</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">10</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">11</p></button>
-            <button class="tables"><p class="table">mesa</p><p class="number">12</p></button>
+            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.number)" value="`${{table.number}}`" [class.selected]="selectedButton.tableNumber === table.number">
+                <p class="table">mesa</p>
+                <p class="number">{{table.number}}</p>
+            </button>
         </div>
         <div class="details-screen">
-
+            <div class="table-detail" *ngIf="selectedButton.selected === true"><p>Status: </p><p>{{ tableStatus | uppercase }}</p></div>
         </div>
     </main>
 </section>
+
+
+<!-- [class.selected]="selectedButton.tableNumber === table.number && selectedButton.lastClicked !== '00'" -->
