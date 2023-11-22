@@ -6,14 +6,10 @@
     <div class="orders-container">
         <div class="filter-container">
             <h3>FILTRAR POR:</h3>
-            <button>AGUARDANDO ACEITE</button>
-            <button>EM PREPARO</button>
-            <button>PRONTOS</button>
-            <button>ENTREGUES</button>
-            <button>CANCELADOS</button>
+            <button *ngFor="let status of statuses" #status.status (click)="select(status.status)" [class.selected]="selectedButton === status.status" value="`${{status.status}}`">{{ status.button | uppercase }}</button>
         </div>
         <ul class="orders-display">
-            <li class="orders" *ngFor="let order of ordersList">
+            <li class="orders" *ngFor="let order of ordersByStatus">
                 <div class="table-info">
                     <h3>MESA </h3>
                     <p>Nome do cliente: {{ order.client }}</p>

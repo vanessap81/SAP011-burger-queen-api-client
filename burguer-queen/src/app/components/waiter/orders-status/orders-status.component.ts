@@ -8,7 +8,16 @@ import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 })
 export class OrdersStatusComponent implements OnInit {
 
-  ordersList: OrderResponse[] = [];
+  statuses = [
+    {button: 'aguardando aceite', status: 'pending'},
+    {button: 'em preparo', status: 'delivering'},
+    {button: 'entregues', status: 'delivered'},
+    {button: 'cancelados', status: 'canceled'}
+  ]
+
+  selectedButton = '';
+  allOrdersList: OrderResponse[] = [];
+  ordersByStatus: OrderResponse[] = [];
 
   @Output() backToTables = new EventEmitter();
 
@@ -18,20 +27,24 @@ export class OrdersStatusComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('Você está na tela de Status');
-    this.showOrdersList();
+    this.pullOrdersList();
   }
 
-  showOrdersList() {
+  pullOrdersList() {
     this._waiterService.getOrders().subscribe({
       next: (data: any) => {
-        this.ordersList = data;
-        console.log(this.ordersList);
+        this.allOrdersList = data;
+        console.log(this.allOrdersList);
       }
     })
   }
 
   back() {
     this.backToTables.emit();
-  }
+  } 
 
+  select(status: string): void {
+    this.selectedButton = status;
+    this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == status);
+  }
 }
