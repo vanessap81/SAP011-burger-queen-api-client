@@ -18,8 +18,7 @@ export class WaiterComponent implements OnInit {
 
   constructor(
     private _route: Router
-  ) {
-  }
+  ) {}
   
   handleComponents(showTables: boolean, showMenu: boolean, showOrders: boolean) {
     this.showTables = showTables;
@@ -33,11 +32,17 @@ export class WaiterComponent implements OnInit {
     this.orderData.tableNumber = event.tableNumber;
     console.log('Enviado do componente pai o OrderData', this.orderData);
     this.handleComponents(false, true, false);
+    this._route.navigate(['waiter/menu']);
   }
 
   openStatus() {
     this.handleComponents(false, false, true);
-    this._route.navigate(['/waiter/orders-status']);
+    this._route.navigate(['waiter/orders-status']);
+  }
+
+  openTables() {
+    this.handleComponents(true, false, false);
+    this._route.navigate(['waiter/tables']);
   }
 
 }

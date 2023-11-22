@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 import { WaiterService } from 'src/app/services/waiter.service';
 import { OrderData } from 'src/app/interfaces/OrderData';
@@ -15,11 +15,10 @@ export class MenuComponent implements OnInit {
   quantity: number = 0;
   clientName: string = '';
   clientTable: string = '';
+  order = {name: '', table: ''};
 
-  @Input() orderData: OrderData = {
-    name: '',
-    tableNumber: ''
-  };
+  @Input() orderData?: OrderData;
+  @Output() backToTables = new EventEmitter();
 
   constructor(
     private readonly _SERVICE: WaiterService
@@ -27,6 +26,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductsList();
+    // this.getOrder(this.orderData?);
   }
   
   getProductsList() {
@@ -38,12 +38,15 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  getOrder(event: OrderData) {
-    event.name = this.clientName;
-    event.tableNumber = this.clientTable;
-    console.log('Enviado de Menu');
-    console.log(this.clientName);
-    console.log(this.clientTable);
+  back() {
+    this.backToTables.emit();
   }
+
+
+  // getOrder(send: OrderData) {
+  //   console.log('Enviado de Menu');
+  //   send.name = this.order.name;
+  //   send.tableNumber = this.order.table;
+  // }
 }
 

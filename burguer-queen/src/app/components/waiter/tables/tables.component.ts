@@ -43,7 +43,7 @@ export class TablesComponent {
 
     if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
       this.isAllReady = !this.isAllReady;
-      console.log('Aviso do Tables', this.clienteName, this.selectedButton.tableNumber, 'mesa pronta');
+      console.log(this.clienteName, 'mesa', this.selectedButton.tableNumber, 'PRONTA');
     } else {
       this.isAllReady = false;
     }
