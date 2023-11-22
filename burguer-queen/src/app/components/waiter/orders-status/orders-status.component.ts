@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { WaiterService } from 'src/app/services/waiter.service';
+import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 @Component({
   selector: 'app-orders-status',
   templateUrl: './orders-status.component.html',
@@ -7,7 +8,9 @@ import { WaiterService } from 'src/app/services/waiter.service';
 })
 export class OrdersStatusComponent implements OnInit {
 
-  ordersList: [] = [];
+  ordersList: OrderResponse[] = [];
+
+  @Output() backToTables = new EventEmitter();
 
   constructor(
     private _waiterService: WaiterService,
@@ -21,10 +24,14 @@ export class OrdersStatusComponent implements OnInit {
   showOrdersList() {
     this._waiterService.getOrders().subscribe({
       next: (data: any) => {
-        console.log(data);
-        // this.ordersList = data;
+        this.ordersList = data;
+        console.log(this.ordersList);
       }
     })
+  }
+
+  back() {
+    this.backToTables.emit();
   }
 
 }

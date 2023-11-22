@@ -23,13 +23,14 @@ export class TablesComponent {
   @Output() viewTablesStatus = new EventEmitter<any>()
 
   OnInit() {
-    console.log('Você está na tela de Mesas')
+    
   }
 
   constructor(
     private _route: Router,
   ) {
-    this.storage = window.localStorage
+    this.storage = window.localStorage;
+    console.log('Você está na tela de Mesas');
   }
   
   checkTable(value: string) {

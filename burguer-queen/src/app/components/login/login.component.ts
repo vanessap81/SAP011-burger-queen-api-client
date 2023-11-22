@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         const userRole = data.role;
         switch (userRole) {
           case 'waiter':
-            return this._route.navigate(['/waiter']);
+            return this._route.navigate(['/waiter/tables']);
           case 'kitchen':
             return this._route.navigate(['/kitchen']);
           case 'admin':
