@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderData } from 'src/app/interfaces/OrderData';
 
 @Component({
   selector: 'app-tables',
@@ -18,7 +19,8 @@ export class TablesComponent {
   // tableForm: FormGroup
   storage: Storage;
 
-  @Output() clientNameAndTable = new EventEmitter<any>();
+  @Output() clientNameAndTable = new EventEmitter<OrderData>();
+  @Output() viewTablesStatus = new EventEmitter<any>()
 
   OnInit() {}
 
@@ -52,6 +54,6 @@ export class TablesComponent {
   }
 
   viewStatusOrders() {
-    return this._route.navigate(['/orders-status']);
+    this.viewTablesStatus.emit();
   }
 }

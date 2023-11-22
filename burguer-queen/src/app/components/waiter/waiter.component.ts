@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { OrderData } from 'src/app/interfaces/OrderData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-waiter',
@@ -15,9 +16,18 @@ export class WaiterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  constructor() {}
+  constructor(
+    private _route: Router
+  ) {
+  }
   
-  openMenu(event: {name: string, tableNumber: string}) {
+  handleComponents(showTables: boolean, showMenu: boolean, showOrders: boolean) {
+    this.showTables = showTables;
+    this.showMenu = showMenu;
+    this.showOrders = showOrders;
+  }
+
+  openMenu(event: OrderData) {
     this.orderData = event;
     this.orderData.name = event.name;
     this.orderData.tableNumber = event.tableNumber;
@@ -25,14 +35,9 @@ export class WaiterComponent implements OnInit {
     this.handleComponents(false, true, false);
   }
 
-  handleComponents(showTables: boolean, showMenu: boolean, showOrders: boolean) {
-    this.showTables = showTables;
-    this.showMenu = showMenu;
-    this.showOrders = showOrders;
-  }
-
   openStatus() {
     this.handleComponents(false, false, true);
+    this._route.navigate(['/waiter/orders-status']);
   }
 
 }

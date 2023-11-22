@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 import { WaiterService } from 'src/app/services/waiter.service';
+import { OrderData } from 'src/app/interfaces/OrderData';
 
 @Component({
   selector: 'app-menu',
@@ -12,8 +13,13 @@ export class MenuComponent implements OnInit {
   breakfastProducts: ProductResponse[] = [];
   todaysProducts: ProductResponse[] = [];
   quantity: number = 0;
+  clientName: string = '';
+  clientTable: string = '';
 
-  @Input() orderData = {name: '', tableNumber: ''};
+  @Input() orderData: OrderData = {
+    name: '',
+    tableNumber: ''
+  };
 
   constructor(
     private readonly _SERVICE: WaiterService
@@ -32,5 +38,12 @@ export class MenuComponent implements OnInit {
     })
   }
 
+  getOrder(event: OrderData) {
+    event.name = this.clientName;
+    event.tableNumber = this.clientTable;
+    console.log('Enviado de Menu');
+    console.log(this.clientName);
+    console.log(this.clientTable);
+  }
 }
 
