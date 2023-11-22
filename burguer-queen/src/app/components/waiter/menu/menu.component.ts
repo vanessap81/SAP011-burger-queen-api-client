@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   clientTable: string = '';
   order = {name: '', table: ''};
 
-  @Input() orderData?: OrderData;
+  @Input() orderData: OrderData = {name: '', table: ''};
   @Output() backToTables = new EventEmitter();
 
   constructor(
@@ -27,6 +27,8 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.getProductsList();
     console.log('Você está na tela de Menu');
+    this.order.name = this.orderData.name;
+    this.order.table = this.orderData.table;
     // this.getOrder(this.orderData?);
   }
   

@@ -12,7 +12,7 @@ export class WaiterComponent implements OnInit {
   showTables: boolean = true;
   showMenu: boolean = false;
   showOrders: boolean = false;
-  orderData = {name: '', tableNumber: ''};
+  orderData = {name: '', table: ''};
 
   ngOnInit(): void {}
 
@@ -29,7 +29,7 @@ export class WaiterComponent implements OnInit {
   openMenu(event: OrderData) {
     this.orderData = event;
     this.orderData.name = event.name;
-    this.orderData.tableNumber = event.tableNumber;
+    this.orderData.table = event.table;
     console.log('Enviado do componente pai o OrderData', this.orderData);
     this.handleComponents(false, true, false);
     this._route.navigate(['waiter/menu']);

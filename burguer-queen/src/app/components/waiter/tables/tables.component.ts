@@ -13,8 +13,22 @@ export class TablesComponent {
   selectedButton = {selected: false, tableNumber: ''};
   clienteName: string = '';
   isAllReady: boolean = false;
-  tables = [{number: '01'}, {number: '02'}, {number: '03'}, {number: '04'}, {number: '05'}, {number: '06'},{number: '07'}, {number: '08'}, {number: '09'}, {number: '10'}, {number: '11'}, {number: '12'}];
-  orderData = {name: '', tableNumber: ''};
+  tables = [
+    {number: '01'}, 
+    {number: '02'}, 
+    {number: '03'}, 
+    {number: '04'}, 
+    {number: '05'}, 
+    {number: '06'},
+    {number: '07'}, 
+    {number: '08'}, 
+    {number: '09'}, 
+    {number: '10'}, 
+    {number: '11'}, 
+    {number: '12'}
+  ];
+
+  orderData = {name: '', table: ''};
 
   // tableForm: FormGroup
   storage: Storage;
@@ -36,7 +50,7 @@ export class TablesComponent {
   checkTable(value: string) {
     this.selectedButton.selected = true;
     this.selectedButton.tableNumber = value;
-    this.orderData.tableNumber = value;
+    this.orderData.table = value;
   }
 
   prepareTable(event: Event) {
