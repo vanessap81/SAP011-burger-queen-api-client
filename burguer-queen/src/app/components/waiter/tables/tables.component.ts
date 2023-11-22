@@ -38,11 +38,10 @@ export class TablesComponent {
     const target = event.target as HTMLInputElement;
     this.clienteName = target.value;
     this.orderData.name = target.value;
-    console.log(this.orderData);
 
     if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
       this.isAllReady = !this.isAllReady;
-      console.log(this.clienteName, this.selectedButton.tableNumber, 'mesa pronta');
+      console.log('Aviso do Tables', this.clienteName, this.selectedButton.tableNumber, 'mesa pronta');
     } else {
       this.isAllReady = false;
     }
@@ -50,9 +49,9 @@ export class TablesComponent {
 
   startOrder() {
     this.clientNameAndTable.emit(this.orderData);
-    console.log(this.orderData);
-    this.storage.setItem('clientName', this.orderData.name);
-    this.storage.setItem('tableNumber', this.orderData.tableNumber);
-    return this._route.navigate(['/menu']);
+  }
+
+  viewStatusOrders() {
+    return this._route.navigate(['/orders-status']);
   }
 }

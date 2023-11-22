@@ -24,8 +24,8 @@ header h1 {
     color: #FFF;
 }
 
-header h1 .client-name {
-    width: 90px;
+header .client-name {
+    width: 100px;
     color: #FFF;
 }
 

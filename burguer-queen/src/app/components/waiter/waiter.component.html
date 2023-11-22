@@ -1,3 +1,8 @@
 <div class="container">
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
+    <app-tables *ngIf="showTables" (clientNameAndTable)="openMenu($event)"></app-tables>
+    <app-menu  *ngIf="showMenu"></app-menu>
+    <app-orders-status *ngIf="showOrders"></app-orders-status>
 </div>
+
+<!-- [orderData]="{name: '', tableNumber: ''}" -->

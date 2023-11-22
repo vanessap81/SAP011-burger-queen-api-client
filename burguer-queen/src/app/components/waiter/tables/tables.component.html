@@ -4,7 +4,7 @@
         <h1 class="client-name">Nome do cliente:</h1>
         <input class="clientName" type="text" name="clientName" (blur)="prepareTable($event)">
         <button class="orders" id="start-order" [disabled]="!isAllReady" (click)="startOrder()">INICIAR PEDIDO</button>
-        <button class="orders" id="order-status">VER STATUS</button>
+        <button class="orders" id="order-status" (click)="viewStatusOrders()">VER STATUS</button>
     </header>
     <main>
         <div class="tables-grid">
