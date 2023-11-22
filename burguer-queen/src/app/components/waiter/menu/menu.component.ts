@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductsList();
+    console.log('Você está na tela de Menu');
     // this.getOrder(this.orderData?);
   }
   

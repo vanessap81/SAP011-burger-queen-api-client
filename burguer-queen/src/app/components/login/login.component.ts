@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     }
 
   async authentication(form: Login) {
-    console.log(form);
+    // console.log(form);
     this._loginService.login(form).subscribe({
       next: (data: LoginResponse) => {
         this.storage.setItem('token', data.acessToken);

@@ -22,7 +22,9 @@ export class TablesComponent {
   @Output() clientNameAndTable = new EventEmitter<OrderData>();
   @Output() viewTablesStatus = new EventEmitter<any>()
 
-  OnInit() {}
+  OnInit() {
+    console.log('Você está na tela de Mesas')
+  }
 
   constructor(
     private _route: Router,
