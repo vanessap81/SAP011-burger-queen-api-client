@@ -34,6 +34,7 @@ export class MenuComponent implements OnInit {
   getProductsList() {
     this._SERVICE.getProducts().subscribe({
       next: (data: any) => {
+        console.log(data);
         this.breakfastProducts = data.filter((product: any) => product.type == 'Café da manhã');
         this.todaysProducts = data.filter((product: any) => product.type == 'Menu do dia');
       }
