@@ -12,7 +12,7 @@
                 <ul class="breakfast">
                     <li *ngFor="let product of breakfastProducts">
                         <p>{{ product.name }}</p>
-                        <img src="{{product.image}}" alt="">
+                        <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
                             <button class="quantityButtons">-</button>
@@ -25,7 +25,7 @@
                 <ul class="todaysMenu">
                     <li *ngFor="let product of todaysProducts">
                         <p>{{ product.name }}</p>
-                        <img src="" alt="">
+                        <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
                             <button class="quantityButtons">-</button>
