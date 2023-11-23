@@ -67,8 +67,6 @@ h1 {
     scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    /* align-items: flex-start; */
 }
 
 .orders-display::-webkit-scrollbar{
@@ -94,6 +92,10 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     padding: 15px;
+}
+
+.orders p {
+    margin-top: 5px;
 }
 
 .table-info,

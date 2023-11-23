@@ -29,7 +29,6 @@ export class MenuComponent implements OnInit {
     console.log('Você está na tela de Menu');
     this.order.name = this.orderData.name;
     this.order.table = this.orderData.table;
-    // this.getOrder(this.orderData?);
   }
   
   getProductsList() {
@@ -45,11 +44,5 @@ export class MenuComponent implements OnInit {
     this.backToTables.emit();
   }
 
-
-  // getOrder(send: OrderData) {
-  //   console.log('Enviado de Menu');
-  //   send.name = this.order.name;
-  //   send.tableNumber = this.order.table;
-  // }
 }
 

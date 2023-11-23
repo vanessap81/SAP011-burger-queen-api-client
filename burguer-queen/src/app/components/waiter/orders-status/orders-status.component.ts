@@ -18,6 +18,8 @@ export class OrdersStatusComponent implements OnInit {
   selectedButton = '';
   allOrdersList: OrderResponse[] = [];
   ordersByStatus: OrderResponse[] = [];
+  creationTime = '';
+  updated = '';
 
   @Output() backToTables = new EventEmitter();
 
