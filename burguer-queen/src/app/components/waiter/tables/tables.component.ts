@@ -34,7 +34,8 @@ export class TablesComponent {
   storage: Storage;
 
   @Output() clientNameAndTable = new EventEmitter<OrderData>();
-  @Output() viewTablesStatus = new EventEmitter<any>()
+  @Output() viewTablesStatus = new EventEmitter<any>();
+  @Output() leaveWaiterSection = new EventEmitter<any>();
 
   OnInit() {
     
@@ -72,5 +73,9 @@ export class TablesComponent {
 
   viewStatusOrders() {
     this.viewTablesStatus.emit();
+  }
+
+  logout() {
+    this.leaveWaiterSection.emit();
   }
 }

@@ -1,6 +1,6 @@
 <div class="container">
     <!-- <router-outlet></router-outlet> -->
-    <app-tables *ngIf="showTables" (clientNameAndTable)="openMenu($event)" (viewTablesStatus)="openStatus()"></app-tables>
+    <app-tables *ngIf="showTables" (clientNameAndTable)="openMenu($event)" (viewTablesStatus)="openStatus()" (leaveWaiterSection)="goToLogin()"></app-tables>
     <app-menu  *ngIf="showMenu" [orderData]="orderData" (backToTables)="openTables()"></app-menu>
     <app-orders-status *ngIf="showOrders" (backToTables)="openTables()"></app-orders-status>
 </div>

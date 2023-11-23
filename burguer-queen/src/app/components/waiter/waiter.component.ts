@@ -45,4 +45,8 @@ export class WaiterComponent implements OnInit {
     this._route.navigate(['waiter/tables']);
   }
 
+  goToLogin() {
+    console.log('Voltou para tela de Login');
+    return this._route.navigate(['/']);
+  }
 }
