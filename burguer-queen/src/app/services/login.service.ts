@@ -11,8 +11,8 @@ import { LoginResponse } from '../interfaces/LoginResponse';
 })
 
 export class LoginService {
-  private readonly generalApi = 'http://localhost:8080/';
-  private readonly apiUrl = 'http://localhost:8080/login';
+  private readonly generalApi = 'https://burger-queen-api-jade.vercel.app/';
+  private readonly apiUrl = 'https://burger-queen-api-jade.vercel.app/login';
 
   constructor( private http: HttpClient ) { }
 
