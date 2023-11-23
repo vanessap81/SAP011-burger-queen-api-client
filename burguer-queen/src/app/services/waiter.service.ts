@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WaiterService {
-  private readonly apiUrlProducts = 'http://localhost:8080/products';
-  private readonly apiUrlOrders = 'http://localhost:8080/orders';
+  private readonly apiUrlProducts = 'https://burger-queen-api-jade.vercel.app/products';
+  private readonly apiUrlOrders = 'https://burger-queen-api-jade.vercel.app/orders';
   storage: Storage;
   
   constructor(
