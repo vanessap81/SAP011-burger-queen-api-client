@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+// import { ProductResponse } from '../interfaces/ProductResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WaiterService {
-  private readonly apiUrl = 'http://localhost:8080/products';
+  private readonly apiUrlProducts = 'http://localhost:8080/products';
+  private readonly apiUrlOrders = 'http://localhost:8080/orders';
   storage: Storage;
   
   constructor(
@@ -21,12 +23,20 @@ export class WaiterService {
 
   getProducts(): Observable<any> {
     const token: any = window.localStorage.getItem('token');
-    // console.log(token);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     })
-    return this.http.get(this.apiUrl, { headers });
+    return this.http.get(this.apiUrlProducts, { headers });
+  }
+
+  getOrders(): Observable<any> {
+    const token: any = window.localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get(this.apiUrlOrders, { headers });
   }
 }
 

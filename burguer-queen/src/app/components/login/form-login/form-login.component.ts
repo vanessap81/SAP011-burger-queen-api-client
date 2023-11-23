@@ -48,13 +48,3 @@ export class FormLoginComponent implements OnInit {
     this.onSubmit.emit(this.loginForm.value);
   }
 }
-
-  // get emailControl() {
-  //   return this.loginForm.get('emailControl')!;
-  // }
-
-  // this.loginForm = new FormGroup({
-  //   email: new FormControl('', Validators.required),
-  //   password: new FormControl('', Validators.required),
-  //   role: new FormControl('', Validators.required)
-  // })

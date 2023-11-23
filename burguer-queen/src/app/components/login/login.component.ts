@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   data?: string = '';
   storage: Storage;
-  // errorLogin: boolean = false;
 
   ngOnInit(): void {}
 
@@ -26,7 +25,6 @@ export class LoginComponent implements OnInit {
     }
 
   async authentication(form: Login) {
-    console.log(form);
     this._loginService.login(form).subscribe({
       next: (data: LoginResponse) => {
         this.storage.setItem('token', data.acessToken);
@@ -41,7 +39,6 @@ export class LoginComponent implements OnInit {
           default:
             return this._route.parseUrl('');
         }
-        // this._route.navigate([`/${userRole}`])
       }
     });
   }
