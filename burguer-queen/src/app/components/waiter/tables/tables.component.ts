@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
+import { OrderData } from 'src/app/interfaces/OrderData';
 
 @Component({
   selector: 'app-tables',
@@ -12,37 +13,55 @@ export class TablesComponent {
   selectedButton = {selected: false, tableNumber: ''};
   clienteName: string = '';
   isAllReady: boolean = false;
-  tables = [{number: '01'}, {number: '02'}, {number: '03'}, {number: '04'}, {number: '05'}, {number: '06'},{number: '07'}, {number: '08'}, {number: '09'}, {number: '10'}, {number: '11'}, {number: '12'}];
-  orderData = {name: '', tableNumber: ''};
+  tables = [
+    {number: '01'}, 
+    {number: '02'}, 
+    {number: '03'}, 
+    {number: '04'}, 
+    {number: '05'}, 
+    {number: '06'},
+    {number: '07'}, 
+    {number: '08'}, 
+    {number: '09'}, 
+    {number: '10'}, 
+    {number: '11'}, 
+    {number: '12'}
+  ];
+
+  orderData = {name: '', table: ''};
 
   // tableForm: FormGroup
   storage: Storage;
 
-  @Output() clientNameAndTable = new EventEmitter<any>();
+  @Output() clientNameAndTable = new EventEmitter<OrderData>();
+  @Output() viewTablesStatus = new EventEmitter<any>();
+  @Output() leaveWaiterSection = new EventEmitter<any>();
 
-  OnInit() {}
+  OnInit() {
+    
+  }
 
   constructor(
     private _route: Router,
   ) {
-    this.storage = window.localStorage
+    this.storage = window.localStorage;
+    console.log('Você está na tela de Mesas');
   }
   
   checkTable(value: string) {
     this.selectedButton.selected = true;
     this.selectedButton.tableNumber = value;
-    this.orderData.tableNumber = value;
+    this.orderData.table = value;
   }
 
   prepareTable(event: Event) {
     const target = event.target as HTMLInputElement;
     this.clienteName = target.value;
     this.orderData.name = target.value;
-    console.log(this.orderData);
 
     if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
       this.isAllReady = !this.isAllReady;
-      console.log(this.clienteName, this.selectedButton.tableNumber, 'mesa pronta');
+      console.log(this.clienteName, 'mesa', this.selectedButton.tableNumber, 'PRONTA');
     } else {
       this.isAllReady = false;
     }
@@ -50,9 +69,13 @@ export class TablesComponent {
 
   startOrder() {
     this.clientNameAndTable.emit(this.orderData);
-    console.log(this.orderData);
-    this.storage.setItem('clientName', this.orderData.name);
-    this.storage.setItem('tableNumber', this.orderData.tableNumber);
-    return this._route.navigate(['/menu']);
+  }
+
+  viewStatusOrders() {
+    this.viewTablesStatus.emit();
+  }
+
+  logout() {
+    this.leaveWaiterSection.emit();
   }
 }

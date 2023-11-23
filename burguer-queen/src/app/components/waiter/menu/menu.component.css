@@ -50,6 +50,10 @@ header h1 {
     margin-left: 80px;
 }
 
+.back:hover {
+    cursor: pointer;
+}
+
 .bi-arrow-left-circle-fill {
     margin-right: 10px;
 }

@@ -1,1 +1,27 @@
-<p>orders-status works!</p>
+<section class="order-status-container">
+    <header>
+        <H1> STATUS DOS PEDIDOS</H1>
+        <a class="back" (click)="back()"><i class="bi bi-arrow-left-circle-fill"></i>Voltar</a>
+    </header>
+    <div class="orders-container">
+        <div class="filter-container">
+            <h3>FILTRAR POR:</h3>
+            <button *ngFor="let status of statuses" #status.status (click)="select(status.status)" [class.selected]="selectedButton === status.status" value="`${{status.status}}`">{{ status.button | uppercase }}</button>
+        </div>
+        <ul class="orders-display">
+            <li class="orders" *ngFor="let order of ordersByStatus">
+                <div class="table-info">
+                    <h3>MESA </h3>
+                    <p>Nome do cliente: {{ order.client }}</p>
+                    <p>Itens: </p>
+                </div>
+                <div class="order-info">
+                    <h3>PEDIDO </h3>
+                    <p>Criado em: {{ order.createdAt.toString().slice(11, 16) }}</p>
+                    <p>Ultima atualização: {{ order.updatedAt.toString().slice(11, 16) }}</p>
+                    <p>Tempo desde a criação: </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
