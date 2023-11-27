@@ -25,7 +25,6 @@ export class MenuComponent implements OnInit {
     products: []
   }; 
 
-  
 
   @Input() orderData: OrderData = {name: '', table: ''};
   @Output() backToTables = new EventEmitter();
@@ -61,13 +60,17 @@ export class MenuComponent implements OnInit {
 
     if(this.order.products.length !== 0) {
       this.order.products.forEach(item => {
-        if(item.productId === target.value){
+        if(item.productId === target.value && item.quantity > 0){
           item.quantity--;
           console.log('quantidade diminuida');
-          console.log(this.order);
-        }
+        } 
       })
     }
+
+    let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
+    this.order.products = filtredProducts;
+    console.log(this.order);
+
   };
 
   addProduct(event: Event) {
@@ -84,7 +87,8 @@ export class MenuComponent implements OnInit {
           item.quantity++;
           console.log('quantidade acrescida');
         } else if(item.productId !== target.value) {
-          let productInclueded: Products = {productId: target.value, quantity: 1};
+          let productInclueded: Products = {productId: target.value, quantity: 0};
+          productInclueded.quantity++;
           this.order.products.push(productInclueded);
           console.log('novo produto incluido no pedido');
         }
@@ -95,3 +99,6 @@ export class MenuComponent implements OnInit {
 
 }
 
+// else if(item.productId === target.value && item.quantity === 0){
+//   this.order.products.;
+// }
