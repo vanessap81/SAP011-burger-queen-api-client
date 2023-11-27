@@ -18,7 +18,9 @@ export class WaiterComponent implements OnInit {
 
   constructor(
     private _route: Router
-  ) {}
+  ) {
+    this.handleComponents(true, false, false);
+  }
   
   handleComponents(showTables: boolean, showMenu: boolean, showOrders: boolean) {
     this.showTables = showTables;

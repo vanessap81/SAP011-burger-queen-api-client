@@ -1,9 +1,9 @@
 <section class="menu-container">
     <header>
         <h1>Nome do cliente:</h1>
-        <div class="client-name">{{ order.name }}</div>
+        <div class="client-name">{{ infoFromTables.name }}</div>
         <h1>Mesa:</h1>
-        <div class="client-table">{{ order.table }}</div>
+        <div class="client-table">{{ infoFromTables.table }}</div>
         <a class="back" (click)="back()"><i class="bi bi-arrow-left-circle-fill"></i>Voltar</a>
     </header>
     <main>
@@ -15,9 +15,9 @@
                         <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
-                            <button class="quantityButtons">-</button>
-                            <p>{{quantity}}</p>
-                            <button class="quantityButtons">+</button>
+                            <button class="quantityButtons" (click)="removeProduct($event)" value="{{ product._id }}">-</button>
+                            <p >{{ quantity }}</p>
+                            <button class="quantityButtons" (click)="addProduct($event)" value="{{ product._id }}">+</button>
                         </div>
                     </li>
                 </ul>
@@ -28,9 +28,9 @@
                         <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
-                            <button class="quantityButtons">-</button>
-                            <p>{{ quantity }}</p>
-                            <button class="quantityButtons">+</button>
+                            <button class="quantityButtons" (click)="removeProduct($event)" value="{{ product._id }}">-</button>
+                            <p></p>
+                            <button class="quantityButtons" (click)="addProduct($event)" value="{{ product._id }}">+</button>
                         </div>
                     </li>
                 </ul>

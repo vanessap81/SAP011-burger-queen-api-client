@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 import { WaiterService } from 'src/app/services/waiter.service';
 import { OrderData } from 'src/app/interfaces/OrderData';
+import { Ordermodel } from 'src/app/interfaces/OrderModel';
+import { Products } from 'src/app/interfaces/Products';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +17,15 @@ export class MenuComponent implements OnInit {
   quantity: number = 0;
   clientName: string = '';
   clientTable: string = '';
-  order = {name: '', table: ''};
+  infoFromTables: OrderData = {name: '', table: ''};
+
+  order: Ordermodel = {
+    userId: '',
+    client: '',
+    products: []
+  }; 
+
+  
 
   @Input() orderData: OrderData = {name: '', table: ''};
   @Output() backToTables = new EventEmitter();
@@ -27,22 +37,60 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.getProductsList();
     console.log('Você está na tela de Menu');
-    this.order.name = this.orderData.name;
-    this.order.table = this.orderData.table;
+    this.infoFromTables.name = this.orderData.name;
+    this.order.client = this.orderData.name;
+    this.infoFromTables.table = this.orderData.table;
   }
   
   getProductsList() {
     this._SERVICE.getProducts().subscribe({
-      next: (data: any) => {
+      next: (data: ProductResponse[]) => {
         console.log(data);
-        this.breakfastProducts = data.filter((product: any) => product.type == 'Café da manhã');
-        this.todaysProducts = data.filter((product: any) => product.type == 'Menu do dia');
+        this.breakfastProducts = data.filter((product: ProductResponse) => product.type == 'Café da manhã');
+        this.todaysProducts = data.filter((product: ProductResponse) => product.type == 'Menu do dia');
       }
     })
   }
 
   back() {
     this.backToTables.emit();
+  }
+
+  removeProduct(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if(this.order.products.length !== 0) {
+      this.order.products.forEach(item => {
+        if(item.productId === target.value){
+          item.quantity--;
+          console.log('quantidade diminuida');
+          console.log(this.order);
+        }
+      })
+    }
+  };
+
+  addProduct(event: Event) {
+    const target = event.target as HTMLInputElement;
+
+    if(this.order.products.length === 0) {
+      let productInclueded: Products = {productId: target.value, quantity: 0};
+      productInclueded.quantity++;
+      this.order.products.push(productInclueded);
+      console.log('novo produto incluido no pedido');
+    } else {
+      this.order.products.forEach(item => {
+        if(item.productId === target.value){
+          item.quantity++;
+          console.log('quantidade acrescida');
+        } else if(item.productId !== target.value) {
+          let productInclueded: Products = {productId: target.value, quantity: 1};
+          this.order.products.push(productInclueded);
+          console.log('novo produto incluido no pedido');
+        }
+      });
+    }
+    console.log(this.order);
   }
 
 }
