@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
   async authentication(form: Login) {
     this._loginService.login(form).subscribe({
       next: (data: LoginResponse) => {
-        console.log(data);
+        // console.log(data);
         this.storage.setItem('token', data.acessToken);
+        this.storage.setItem('userId', data.userId);
         const userRole = data.role;
         switch (userRole) {
           case 'waiter':

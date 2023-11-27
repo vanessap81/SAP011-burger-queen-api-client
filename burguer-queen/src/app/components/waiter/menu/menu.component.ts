@@ -18,6 +18,7 @@ export class MenuComponent implements OnInit {
   clientName: string = '';
   clientTable: string = '';
   infoFromTables: OrderData = {name: '', table: ''};
+  storage: Storage;
 
   order: Ordermodel = {
     userId: '',
@@ -31,7 +32,9 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private readonly _SERVICE: WaiterService
-    ) {}
+    ) {
+      this.storage = window.localStorage;
+    }
 
   ngOnInit(): void {
     this.getProductsList();
@@ -42,9 +45,10 @@ export class MenuComponent implements OnInit {
   }
   
   getProductsList() {
+    const userId: any = window.localStorage.getItem('userId');
+    this.order.userId = userId;
     this._SERVICE.getProducts().subscribe({
       next: (data: ProductResponse[]) => {
-        console.log(data);
         this.breakfastProducts = data.filter((product: ProductResponse) => product.type == 'Café da manhã');
         this.todaysProducts = data.filter((product: ProductResponse) => product.type == 'Menu do dia');
       }
@@ -70,35 +74,37 @@ export class MenuComponent implements OnInit {
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
     console.log(this.order);
-
   };
 
   addProduct(event: Event) {
     const target = event.target as HTMLInputElement;
+    console.log(target.value);
 
-    if(this.order.products.length === 0) {
-      let productInclueded: Products = {productId: target.value, quantity: 0};
-      productInclueded.quantity++;
-      this.order.products.push(productInclueded);
-      console.log('novo produto incluido no pedido');
-    } else {
-      this.order.products.forEach(item => {
-        if(item.productId === target.value){
-          item.quantity++;
-          console.log('quantidade acrescida');
-        } else if(item.productId !== target.value) {
+    if(this.order.products.length > 0) {
+      for (let i = 0; i < this.order.products.length; i++) {
+        if (target.value !== this.order.products[i].productId) {
           let productInclueded: Products = {productId: target.value, quantity: 0};
           productInclueded.quantity++;
           this.order.products.push(productInclueded);
           console.log('novo produto incluido no pedido');
+        } 
+        
+        if (target.value === this.order.products[i].productId) {
+          this.order.products[i].quantity++;
+          console.log('quantidade acrescida');
         }
-      });
-    }
-    console.log(this.order);
+      };
+    } 
+    
+    else if(this.order.products.length === 0) {
+      let productInclueded: Products = {productId: target.value, quantity: 0};
+      productInclueded.quantity++;
+      this.order.products.push(productInclueded);
+      console.log('novo produto incluido no pedido');
+    } 
+
+    console.log(this.order.products);
   }
 
 }
 
-// else if(item.productId === target.value && item.quantity === 0){
-//   this.order.products.;
-// }

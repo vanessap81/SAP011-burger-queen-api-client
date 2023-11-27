@@ -37,12 +37,19 @@
         </div>
         <div class="details-screen">
             <div class="order-info">
-                <p>Qtd</p>
-                <p>Descrição</p>
-                <p>Valor</p>
+                <p class="qtd">Qtd</p>
+                <p class="description">Descrição</p>
+                <p class="price">Valor</p>
             </div>
-            <div class="selected-products">
-            </div>
+
+            <ul class="chosen-products" *ngIf="order.products.length !== 0">
+                <li *ngFor="let item of order.products">
+                    <p class="qtd"></p>
+                    <p class="description">Descrição</p>
+                    <p class="price">Valor</p>
+                </li>
+            </ul>
+
         </div>
     </main>
 </section>
