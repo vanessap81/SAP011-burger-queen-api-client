@@ -64,6 +64,7 @@ export class MenuComponent implements OnInit {
   }
 
   setOfIdProducts = new Set();
+  sum = 0;
 
   addProduct(event: Event, product: ProductResponse, productPrice: number, productName: string) {
     const target = event.target as HTMLInputElement;
@@ -73,19 +74,24 @@ export class MenuComponent implements OnInit {
     if (this.order.products.length === 0) {
       this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
       this.setOfIdProducts.add(target.value);
+      this.sum = this.sum + productPrice;
     } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === false) {
       this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
       this.setOfIdProducts.add(target.value);
+      this.sum = this.sum + productPrice;
     } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
       for (let i = 0; i < this.order.products.length; i++) {
         if (target.value === this.order.products[i].productId) {
           this.order.products[i].quantity++;
           break;
         }};
-    } 
+        this.sum = this.sum + productPrice;
+    }
+
+
   }
 
-  removeProduct(event: Event, product: ProductResponse) {
+  removeProduct(event: Event, product: ProductResponse, productPrice: number) {
     const target = event.target as HTMLInputElement;
     // product.quantity--;
     if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
@@ -93,9 +99,11 @@ export class MenuComponent implements OnInit {
         if (item.productId === target.value && item.quantity > 1){
           item.quantity--;
           product.quantity--;
+          this.sum = this.sum - productPrice;
         } else if (item.productId === target.value && item.quantity === 1) {
           item.quantity--;
           product.quantity--;
+          this.sum = this.sum - productPrice;
           this.setOfIdProducts.delete(target.value);
         }
       })
@@ -104,6 +112,4 @@ export class MenuComponent implements OnInit {
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
   };
-
-
 }
