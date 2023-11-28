@@ -59,22 +59,25 @@ export class MenuComponent implements OnInit {
     this.backToTables.emit();
   }
 
+  itensInThisOrder = new Set();
+
   removeProduct(event: Event, product: ProductResponse) {
     const target = event.target as HTMLInputElement;
-    product.quantity--;
-    if(this.order.products.length !== 0) {
+    // product.quantity--;
+    if(this.order.products.length > 0 && this.itensInThisOrder.has(target.value) === true) {
       this.order.products.forEach(item => {
         if(item.productId === target.value && item.quantity > 0){
           item.quantity--;
+          product.quantity--;
         } 
       })
     }
 
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
-  };
+    console.log(this.order.products);
 
-  itensInThisOrder = new Set();
+  };
 
   addProduct(event: Event, product: ProductResponse) {
     const target = event.target as HTMLInputElement;
