@@ -14,17 +14,21 @@ export class MenuComponent implements OnInit {
 
   breakfastProducts: ProductResponse[] = [];
   todaysProducts: ProductResponse[] = [];
+
   quantity: number = 0;
   clientName: string = '';
   clientTable: string = '';
+
   infoFromTables: OrderData = {name: '', table: ''};
   storage: Storage;
+
   order: Ordermodel = {
     userId: '',
     client: '',
     products: []
   }; 
 
+  // clickedProducts: Products[] = [];
 
   @Input() orderData: OrderData = {name: '', table: ''};
   @Output() backToTables = new EventEmitter();
@@ -48,6 +52,7 @@ export class MenuComponent implements OnInit {
     this.order.userId = userId;
     this._SERVICE.getProducts().subscribe({
       next: (data: ProductResponse[]) => {
+        // console.log(data);
         data.map(product => product.quantity = 0);
         this.breakfastProducts = data.filter((product: ProductResponse) => product.type == 'Café da manhã');
         this.todaysProducts = data.filter((product: ProductResponse) => product.type == 'Menu do dia');
@@ -59,38 +64,43 @@ export class MenuComponent implements OnInit {
     this.backToTables.emit();
   }
 
-  itensInThisOrder = new Set();
+  setOfIdProducts = new Set();
 
   removeProduct(event: Event, product: ProductResponse) {
     const target = event.target as HTMLInputElement;
     // product.quantity--;
-    if(this.order.products.length > 0 && this.itensInThisOrder.has(target.value) === true) {
+    if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
       this.order.products.forEach(item => {
-        if(item.productId === target.value && item.quantity > 0){
+        if (item.productId === target.value && item.quantity > 1){
           item.quantity--;
           product.quantity--;
-        } 
+        } else if (item.productId === target.value && item.quantity === 1) {
+          item.quantity--;
+          product.quantity--;
+          this.setOfIdProducts.delete(target.value);
+        }
       })
     }
 
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
-    console.log(this.order.products);
-
+    // console.log(this.order.products);
+    // console.log(this.setOfIdProducts);
   };
 
-  addProduct(event: Event, product: ProductResponse) {
+  addProduct(event: Event, product: ProductResponse, productPrice: number, productName: string) {
     const target = event.target as HTMLInputElement;
+    // console.log(target.name);
 
     product.quantity++;
 
     if (this.order.products.length === 0) {
-      this.order.products.push({productId: target.value, quantity: 1});
-      this.itensInThisOrder.add(target.value);
-    } else if (this.order.products.length > 0 && this.itensInThisOrder.has(target.value) === false) {
-      this.order.products.push({productId: target.value, quantity: 1});
-      this.itensInThisOrder.add(target.value);
-    } else if (this.order.products.length > 0 && this.itensInThisOrder.has(target.value) === true) {
+      this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
+      this.setOfIdProducts.add(target.value);
+    } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === false) {
+      this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
+      this.setOfIdProducts.add(target.value);
+    } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
       for (let i = 0; i < this.order.products.length; i++) {
         if (target.value === this.order.products[i].productId) {
           this.order.products[i].quantity++;
@@ -98,7 +108,8 @@ export class MenuComponent implements OnInit {
         }};
     } 
     
-    console.log(this.order.products);
+    // console.log(this.order.products);
+    // console.log(this.setOfIdProducts);
   }
 
 }

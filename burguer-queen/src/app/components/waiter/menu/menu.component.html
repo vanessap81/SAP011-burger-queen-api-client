@@ -17,7 +17,7 @@
                         <div class="quantity-container">
                             <button class="quantityButtons" (click)="removeProduct($event, product)" value="{{ product._id }}">-</button>
                             <p >{{ product.quantity }}</p>
-                            <button class="quantityButtons" (click)="addProduct($event, product)" value="{{ product._id }}">+</button>
+                            <button class="quantityButtons" (click)="addProduct($event, product, product.price, product.name)" value="{{ product._id }}">+</button>
                         </div>
                     </li>
                 </ul>
@@ -30,7 +30,7 @@
                         <div class="quantity-container">
                             <button class="quantityButtons" (click)="removeProduct($event, product)" value="{{ product._id }}">-</button>
                             <p>{{ product.quantity }}</p>
-                            <button class="quantityButtons" (click)="addProduct($event, product)" value="{{ product._id }}">+</button>
+                            <button class="quantityButtons" (click)="addProduct($event, product, product.price, product.name)" value="{{ product._id }}" >+</button>
                         </div>
                     </li>
                 </ul>
@@ -44,9 +44,9 @@
 
             <ul class="chosen-products" *ngIf="order.products.length !== 0">
                 <li *ngFor="let item of order.products">
-                    <p class="qtd"></p>
-                    <p class="description">Descrição</p>
-                    <p class="price">Valor</p>
+                    <p class="qtd">1</p>
+                    <p class="description">Nome do produto</p>
+                    <p class="price">R$ 1</p>
                 </li>
             </ul>
 
