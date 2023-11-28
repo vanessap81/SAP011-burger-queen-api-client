@@ -46,15 +46,17 @@
                 <li *ngFor="let item of order.products">
                     <p class="qtd">{{ item.quantity }}</p>
                     <p class="description">{{ item.name }}</p>
-                    <p class="price">R${{ item.price }}</p>
+                    <p class="price">R$ {{ item.price }}</p>
                 </li>
             </ul>
 
             <div class="total-info" *ngIf="order.products.length !== 0">
                 <p class="qtd"></p>
                 <p class="description">TOTAL</p>
-                <p class="price">R${{ sum }}</p>
+                <p class="price">R$ {{ sum }}</p>
             </div>
+
+            <button class="send-order" *ngIf="order.products.length !== 0">CONFIRMAR PEDIDO</button>
 
         </div>
     </main>

@@ -87,8 +87,6 @@ export class MenuComponent implements OnInit {
         }};
         this.sum = this.sum + productPrice;
     }
-
-
   }
 
   removeProduct(event: Event, product: ProductResponse, productPrice: number) {
