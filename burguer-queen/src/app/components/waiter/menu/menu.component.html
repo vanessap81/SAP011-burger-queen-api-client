@@ -44,9 +44,9 @@
 
             <ul class="chosen-products" *ngIf="order.products.length !== 0">
                 <li *ngFor="let item of order.products">
-                    <p class="qtd">1</p>
-                    <p class="description">Nome do produto</p>
-                    <p class="price">R$ 1</p>
+                    <p class="qtd">{{ item.quantity }}</p>
+                    <p class="description">{{ item.name }}</p>
+                    <p class="price">R$ {{ item.price }}</p>
                 </li>
             </ul>
 

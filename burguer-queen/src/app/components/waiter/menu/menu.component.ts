@@ -28,7 +28,6 @@ export class MenuComponent implements OnInit {
     products: []
   }; 
 
-  // clickedProducts: Products[] = [];
 
   @Input() orderData: OrderData = {name: '', table: ''};
   @Output() backToTables = new EventEmitter();
@@ -66,6 +65,26 @@ export class MenuComponent implements OnInit {
 
   setOfIdProducts = new Set();
 
+  addProduct(event: Event, product: ProductResponse, productPrice: number, productName: string) {
+    const target = event.target as HTMLInputElement;
+
+    product.quantity++;
+
+    if (this.order.products.length === 0) {
+      this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
+      this.setOfIdProducts.add(target.value);
+    } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === false) {
+      this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
+      this.setOfIdProducts.add(target.value);
+    } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
+      for (let i = 0; i < this.order.products.length; i++) {
+        if (target.value === this.order.products[i].productId) {
+          this.order.products[i].quantity++;
+          break;
+        }};
+    } 
+  }
+
   removeProduct(event: Event, product: ProductResponse) {
     const target = event.target as HTMLInputElement;
     // product.quantity--;
@@ -84,32 +103,7 @@ export class MenuComponent implements OnInit {
 
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
-    // console.log(this.order.products);
-    // console.log(this.setOfIdProducts);
   };
 
-  addProduct(event: Event, product: ProductResponse, productPrice: number, productName: string) {
-    const target = event.target as HTMLInputElement;
-    // console.log(target.name);
-
-    product.quantity++;
-
-    if (this.order.products.length === 0) {
-      this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
-      this.setOfIdProducts.add(target.value);
-    } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === false) {
-      this.order.products.push({productId: target.value, quantity: 1, name: productName, price: productPrice});
-      this.setOfIdProducts.add(target.value);
-    } else if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
-      for (let i = 0; i < this.order.products.length; i++) {
-        if (target.value === this.order.products[i].productId) {
-          this.order.products[i].quantity++;
-          break;
-        }};
-    } 
-    
-    // console.log(this.order.products);
-    // console.log(this.setOfIdProducts);
-  }
 
 }
