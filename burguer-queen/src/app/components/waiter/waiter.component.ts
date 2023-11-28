@@ -18,7 +18,10 @@ export class WaiterComponent implements OnInit {
 
   constructor(
     private _route: Router
-  ) {}
+  ) {
+    // alterado para teste de menu
+    this.handleComponents(false, true, false);
+  }
   
   handleComponents(showTables: boolean, showMenu: boolean, showOrders: boolean) {
     this.showTables = showTables;
