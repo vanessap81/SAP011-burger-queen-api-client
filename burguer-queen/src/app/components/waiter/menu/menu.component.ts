@@ -19,7 +19,6 @@ export class MenuComponent implements OnInit {
   clientTable: string = '';
   infoFromTables: OrderData = {name: '', table: ''};
   storage: Storage;
-
   order: Ordermodel = {
     userId: '',
     client: '',
@@ -49,6 +48,7 @@ export class MenuComponent implements OnInit {
     this.order.userId = userId;
     this._SERVICE.getProducts().subscribe({
       next: (data: ProductResponse[]) => {
+        data.map(product => product.quantity = 0);
         this.breakfastProducts = data.filter((product: ProductResponse) => product.type == 'Café da manhã');
         this.todaysProducts = data.filter((product: ProductResponse) => product.type == 'Menu do dia');
       }
@@ -59,9 +59,10 @@ export class MenuComponent implements OnInit {
     this.backToTables.emit();
   }
 
-  removeProduct(event: Event) {
+  removeProduct(event: Event, product: ProductResponse) {
     const target = event.target as HTMLInputElement;
 
+    product.quantity--;
     if(this.order.products.length !== 0) {
       this.order.products.forEach(item => {
         if(item.productId === target.value && item.quantity > 0){
@@ -73,38 +74,59 @@ export class MenuComponent implements OnInit {
 
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
-    console.log(this.order);
+    console.log(this.order.products);
   };
 
-  addProduct(event: Event) {
+  itensInThisOrder = new Set();
+
+  addProduct(event: Event, product: ProductResponse) {
     const target = event.target as HTMLInputElement;
     console.log(target.value);
 
-    if(this.order.products.length > 0) {
+    console.log(this.itensInThisOrder);
+    
+    product.quantity++;
+
+    if (this.order.products.length === 0) {
+      this.order.products.push({productId: target.value, quantity: 1});
+      this.itensInThisOrder.add(target.value);
+    }
+    else if (this.order.products.length > 0 && this.itensInThisOrder.has(target.value) === false) {
+      this.order.products.push({productId: target.value, quantity: 1});
+      this.itensInThisOrder.add(target.value);
+    } 
+    else if (this.order.products.length > 0 && this.itensInThisOrder.has(target.value) === true) {
       for (let i = 0; i < this.order.products.length; i++) {
-        if (target.value !== this.order.products[i].productId) {
-          let productInclueded: Products = {productId: target.value, quantity: 0};
-          productInclueded.quantity++;
-          this.order.products.push(productInclueded);
-          console.log('novo produto incluido no pedido');
-        } 
-        
         if (target.value === this.order.products[i].productId) {
           this.order.products[i].quantity++;
-          console.log('quantidade acrescida');
-        }
-      };
+          break;
+        }};
     } 
     
-    else if(this.order.products.length === 0) {
-      let productInclueded: Products = {productId: target.value, quantity: 0};
-      productInclueded.quantity++;
-      this.order.products.push(productInclueded);
-      console.log('novo produto incluido no pedido');
-    } 
-
     console.log(this.order.products);
   }
 
 }
 
+// if(this.order.products.length > 0) {
+//   for (let i = 0; i < this.order.products.length; i++) {
+//     if (target.value !== this.order.products[i].productId) {
+//       let productInclueded: Products = {productId: target.value, quantity: 0};
+//       productInclueded.quantity++;
+//       this.order.products.push(productInclueded);
+//       console.log('novo produto incluido no pedido');
+//     } 
+    
+//     if (target.value === this.order.products[i].productId) {
+//       this.order.products[i].quantity++;
+//       console.log('quantidade acrescida');
+//     }
+//   };
+// } 
+
+// else if(this.order.products.length === 0) {
+//   let productInclueded: Products = {productId: target.value, quantity: 0};
+//   productInclueded.quantity++;
+//   this.order.products.push(productInclueded);
+//   console.log('novo produto incluido no pedido');
+// } 

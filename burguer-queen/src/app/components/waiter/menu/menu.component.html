@@ -15,9 +15,9 @@
                         <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
-                            <button class="quantityButtons" (click)="removeProduct($event)" value="{{ product._id }}">-</button>
-                            <p >{{ quantity }}</p>
-                            <button class="quantityButtons" (click)="addProduct($event)" value="{{ product._id }}">+</button>
+                            <button class="quantityButtons" (click)="removeProduct($event, product)" value="{{ product._id }}">-</button>
+                            <p >{{ product.quantity }}</p>
+                            <button class="quantityButtons" (click)="addProduct($event, product)" value="{{ product._id }}">+</button>
                         </div>
                     </li>
                 </ul>
@@ -28,9 +28,9 @@
                         <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
-                            <button class="quantityButtons" (click)="removeProduct($event)" value="{{ product._id }}">-</button>
-                            <p></p>
-                            <button class="quantityButtons" (click)="addProduct($event)" value="{{ product._id }}">+</button>
+                            <button class="quantityButtons" (click)="removeProduct($event, product)" value="{{ product._id }}">-</button>
+                            <p>{{ product.quantity }}</p>
+                            <button class="quantityButtons" (click)="addProduct($event, product)" value="{{ product._id }}">+</button>
                         </div>
                     </li>
                 </ul>
