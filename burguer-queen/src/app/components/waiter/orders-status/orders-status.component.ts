@@ -36,17 +36,17 @@ export class OrdersStatusComponent implements OnInit {
     this._waiterService.getOrders().subscribe({
       next: (data: any) => {
         this.allOrdersList = data;
-        console.log(this.allOrdersList);
+        this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == 'pending');
       }
     })
   }
-
-  back() {
-    this.backToTables.emit();
-  } 
 
   select(status: string): void {
     this.selectedButton = status;
     this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == status);
   }
+
+  back() {
+    this.backToTables.emit();
+  } 
 }
