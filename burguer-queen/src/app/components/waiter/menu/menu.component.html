@@ -56,7 +56,7 @@
                 <p class="price">R$ {{ sum }}</p>
             </div>
 
-            <button class="send-order" *ngIf="order.products.length !== 0">CONFIRMAR PEDIDO</button>
+            <button class="send-order" (click)="sendThisOrder(order)" *ngIf="order.products.length !== 0">CONFIRMAR PEDIDO</button>
 
         </div>
     </main>

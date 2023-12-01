@@ -4,6 +4,7 @@ import { WaiterService } from 'src/app/services/waiter.service';
 import { OrderData } from 'src/app/interfaces/OrderData';
 import { Ordermodel } from 'src/app/interfaces/OrderModel';
 import { Products } from 'src/app/interfaces/Products';
+import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 
 @Component({
   selector: 'app-menu',
@@ -110,4 +111,15 @@ export class MenuComponent implements OnInit {
     let filtredProducts = this.order.products.filter(((item) => item.quantity > 0));
     this.order.products = filtredProducts;
   };
+
+  sendThisOrder(order: Ordermodel) {
+    console.log('Pedido enviado');
+    console.log(this.order);
+    
+    this._SERVICE.sendOrder(order).subscribe({
+      next: (data: OrderResponse) => {
+        console.log(data);
+      }
+    })
+  }
 }
