@@ -1,2 +1,35 @@
-<h1>principal works!</h1>
-<button (click)="goToOdersStatus()">Status dos pedidos</button>
+<section class="container">
+    <header>
+        <h1 class="client-name">PEDIDOS</h1>
+        <button id="order-status" (click)="goToOdersStatus()">FILTRAR POR STATUS</button>
+    </header>
+    <main>
+        <ul class="orders">
+            <!-- <li class="orders" *ngFor="let order of ordersByStatus">
+                <div class="order-info">
+                    <h3>MESA </h3>
+                    <p>Nome do cliente: {{ order.client }}</p>
+                    <p>Itens: </p>
+                </div>
+                <div class="history">
+                    <p>Hora do pedido{{ order.createdAt.toString().slice(11, 16) }}</p>
+                    <button class="show-historic">VER HISTÓRICO</button>
+
+                </div>
+            </li> -->
+        </ul>
+        <div class="details">
+            <div class="details-screen">
+                <p>HISTÓRICO DO PEDIDO</p>
+
+            </div>
+            
+            <div class="buttons-container">
+                <button class="change-order-status">ACEITAR PEDIDO</button>
+                <button class="change-order-status">PRONTO</button>
+            </div>
+        </div>
+
+    </main>
+</section>
+

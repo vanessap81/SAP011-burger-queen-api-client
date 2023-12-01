@@ -26,13 +26,15 @@ export class KitchenComponent implements OnInit {
   }
 
   goToOrdersStatus() {
-    // const currentUrl = this._activated.pathFromRoot;
-    // console.log(currentUrl);
     this.handleComponents(false, true);
     this._route.navigate([
       'kitchen',
       'order-status'
     ]);
-    // this._route.getCurrentNavigation
+  }
+
+  goToPrincipal() {
+    this.handleComponents(true, false);
+    this._route.navigate(['kitchen']);
   }
 }
