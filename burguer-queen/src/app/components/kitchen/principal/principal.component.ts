@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { KitchenService } from 'src/app/services/kitchen/kitchen.service';
+import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 
 @Component({
   selector: 'app-principal',
@@ -7,10 +9,26 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
+  orders: OrderResponse[] = [];
+
   @Output() toOrders = new EventEmitter();
 
   ngOnInit(): void {
-      
+    this.pullOrdersList();
+  }
+
+  constructor(
+    private _kitchenService: KitchenService,
+  ) {}
+
+  pullOrdersList() {
+    this._kitchenService.getOrders().subscribe({
+      next: (data: any) => {
+        this.orders = data;
+        console.log(data);
+        // this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == 'pending');
+      }
+    })
   }
 
   goToOdersStatus() {
