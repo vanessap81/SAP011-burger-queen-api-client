@@ -49,4 +49,6 @@ export class OrdersStatusComponent implements OnInit {
   back() {
     this.backToTables.emit();
   } 
+
 }
+

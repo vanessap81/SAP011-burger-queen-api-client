@@ -20,7 +20,7 @@ export class WaiterComponent implements OnInit {
     private _route: Router
   ) {
     // alterado para teste de menu
-    this.handleComponents(false, true, false);
+    this.handleComponents(true, false, false);
   }
   
   handleComponents(showTables: boolean, showMenu: boolean, showOrders: boolean) {

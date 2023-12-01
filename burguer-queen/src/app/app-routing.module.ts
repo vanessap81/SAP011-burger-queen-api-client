@@ -4,6 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login', 
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
     loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
   },
   {
@@ -11,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/waiter/waiter.module').then(m => m.WaiterModule)
   },
   {
-    path: 'chef',
+    path: 'kitchen',
     loadChildren: () => import('./components/kitchen/kitchen.module').then(m => m.KitchenModule)
   },
   {
