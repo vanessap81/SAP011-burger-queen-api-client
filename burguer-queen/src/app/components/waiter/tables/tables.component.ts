@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderData } from 'src/app/interfaces/OrderData';
-
+import { ViewChild } from '@angular/core';
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
@@ -12,7 +12,8 @@ export class TablesComponent {
   tableStatus: string = 'SEM PEDIDOS';
   selectedButton = {selected: false, tableNumber: ''};
   clienteName: string = '';
-  isAllReady: boolean = false;
+
+  // isAllReady: boolean = false;
   tables = [
     {number: '01'}, 
     {number: '02'}, 
@@ -58,13 +59,7 @@ export class TablesComponent {
     const target = event.target as HTMLInputElement;
     this.clienteName = target.value;
     this.orderData.name = target.value;
-
-    if(this.selectedButton.selected === true && this.tableStatus === 'SEM PEDIDOS' && this.clienteName !== '') {
-      this.isAllReady = !this.isAllReady;
-      console.log(this.clienteName, 'mesa', this.selectedButton.tableNumber, 'PRONTA');
-    } else {
-      this.isAllReady = false;
-    }
+    console.log(this.clienteName);
   }
 
   startOrder() {
