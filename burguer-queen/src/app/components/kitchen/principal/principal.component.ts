@@ -10,6 +10,7 @@ import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 export class PrincipalComponent implements OnInit {
 
   orders: OrderResponse[] = [];
+  selectedButton: string = '';
 
   @Output() toOrders = new EventEmitter();
 
@@ -20,6 +21,10 @@ export class PrincipalComponent implements OnInit {
   constructor(
     private _kitchenService: KitchenService,
   ) {}
+
+  select(id: string): void {
+    this.selectedButton = id;
+  }
 
   pullOrdersList() {
     this._kitchenService.getOrders().subscribe({

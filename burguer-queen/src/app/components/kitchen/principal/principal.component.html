@@ -16,8 +16,7 @@
                 </div>
                 <div class="history">
                     <p>Hora do pedido: {{ order.createdAt.toString().slice(11, 16) }}</p>
-                    <button class="show-historic">VER HISTÓRICO</button>
-
+                    <button class="show-historic" #order._id (click)="select(order._id)" [class.selected]="selectedButton === order._id">VER HISTÓRICO</button>
                 </div>
             </li>
         </ul>
