@@ -35,6 +35,7 @@ export class OrdersStatusComponent implements OnInit {
   pullOrdersList() {
     this._waiterService.getOrders().subscribe({
       next: (data: any) => {
+        console.log(data);
         this.allOrdersList = data;
         this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == 'pending');
       }
@@ -44,6 +45,7 @@ export class OrdersStatusComponent implements OnInit {
   select(status: string): void {
     this.selectedButton = status;
     this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == status);
+    // this.ordersByStatus.sort((a, b) => )
   }
 
   back() {
