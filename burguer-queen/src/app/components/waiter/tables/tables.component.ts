@@ -1,7 +1,9 @@
-import { Component, ElementRef, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
+import { WaiterService } from 'src/app/services/waiter.service';
+import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 import { OrderData } from 'src/app/interfaces/OrderData';
-import { ViewChild } from '@angular/core';
+
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
@@ -12,8 +14,8 @@ export class TablesComponent {
   tableStatus: string = 'SEM PEDIDOS';
   selectedButton = {selected: false, tableNumber: ''};
   clienteName: string = '';
+  ordersList: OrderResponse[] = [];
 
-  // isAllReady: boolean = false;
   tables = [
     {number: '01'}, 
     {number: '02'}, 
@@ -31,24 +33,32 @@ export class TablesComponent {
 
   orderData = {name: '', table: ''};
 
-  // tableForm: FormGroup
   storage: Storage;
 
   @Output() clientNameAndTable = new EventEmitter<OrderData>();
   @Output() viewTablesStatus = new EventEmitter<any>();
   @Output() leaveWaiterSection = new EventEmitter<any>();
 
-  OnInit() {
-    
-  }
+  OnInit(): void {}
 
   constructor(
     private _route: Router,
+    private _waiterService: WaiterService,
   ) {
     this.storage = window.localStorage;
     console.log('Você está na tela de Mesas');
+    this.pullOrdersList();
   }
   
+  pullOrdersList() {
+    this._waiterService.getOrders().subscribe({
+      next: (data: OrderResponse[]) => {
+        console.log(data);
+        this.ordersList = data;
+      }
+    })
+  }
+
   checkTable(value: string) {
     this.selectedButton.selected = true;
     this.selectedButton.tableNumber = value;

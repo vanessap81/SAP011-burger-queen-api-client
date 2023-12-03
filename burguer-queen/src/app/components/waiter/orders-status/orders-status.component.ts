@@ -34,7 +34,7 @@ export class OrdersStatusComponent implements OnInit {
 
   pullOrdersList() {
     this._waiterService.getOrders().subscribe({
-      next: (data: any) => {
+      next: (data: OrderResponse[]) => {
         console.log(data);
         this.allOrdersList = data;
         this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == 'pending');
