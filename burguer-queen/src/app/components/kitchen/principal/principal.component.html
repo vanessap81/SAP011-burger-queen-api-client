@@ -16,19 +16,21 @@
                 </div>
                 <div class="history">
                     <p>Hora do pedido: {{ order.createdAt.toString().slice(11, 16) }}</p>
-                    <button class="show-historic" #order._id (click)="select(order._id)" [class.selected]="selectedButton === order._id">VER HISTÓRICO</button>
+                    <button class="show-historic" #order._id (click)="select(order)" [class.selected]="selectedOrderData._id === order._id">VER HISTÓRICO</button>
                 </div>
             </li>
         </ul>
         <div class="details">
             <div class="details-screen">
-                <p>HISTÓRICO DO PEDIDO</p>
-
+                <p class="title">HISTÓRICO DO PEDIDO</p>
+                <p class="selectedOrderDetails" *ngIf="selectedOrderData.status !== ''">Status do pedido: {{ selectedOrderData.status | uppercase }}</p>
+                <p class="selectedOrderDetails" *ngIf="selectedOrderData.createdAt !== ''">Criado em: {{ selectedOrderData.createdAt.slice(11, 16) }}</p>
+                <p class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">Ultima atualização em: {{ selectedOrderData.updatedAt.slice(11, 16) }}</p>
             </div>
             
             <div class="buttons-container">
-                <button class="change-order-status">ACEITAR PEDIDO</button>
-                <button class="change-order-status">PRONTO</button>
+                <button class="change-order-status" (click)="acceptOrder(updatedStatus, selectedOrderData._id)">ACEITAR PEDIDO</button>
+                <button class="change-order-status" (click)="deliverOrder(updatedStatus, selectedOrderData._id)">MARCAR COMO PRONTO</button>
             </div>
         </div>
 

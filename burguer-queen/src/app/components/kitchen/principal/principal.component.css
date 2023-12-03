@@ -129,11 +129,22 @@ header button:active,
     align-items: center;
 }
 
-.details-screen p {
+.title {
     color: #fff;
     font-size: 1.2em;
-    margin-top: 15px;
+    margin: 15px 0;
     font-weight: 500;
+}
+
+.selectedOrderDetails {
+    width: 90%;
+    height: 34pxem;
+    font-size: 1.1em;
+    font-weight: 500;
+    background-color: #fff;
+    color: #6F1AB6;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .buttons-container {
