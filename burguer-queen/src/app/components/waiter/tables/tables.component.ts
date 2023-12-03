@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { WaiterService } from 'src/app/services/waiter.service';
+import { WaiterService } from 'src/app/services/waiter/waiter.service';
 import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 import { OrderData } from 'src/app/interfaces/OrderData';
 

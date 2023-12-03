@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WaiterService } from 'src/app/services/waiter.service';
+import { WaiterService } from 'src/app/services/waiter/waiter.service';
 import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 @Component({
   selector: 'app-orders-status',

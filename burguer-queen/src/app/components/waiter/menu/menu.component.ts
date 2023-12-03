@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProductResponse } from 'src/app/interfaces/ProductResponse';
-import { WaiterService } from 'src/app/services/waiter.service';
+import { WaiterService } from 'src/app/services/waiter/waiter.service';
 import { OrderData } from 'src/app/interfaces/OrderData';
 import { Ordermodel } from 'src/app/interfaces/OrderModel';
 import { Products } from 'src/app/interfaces/Products';

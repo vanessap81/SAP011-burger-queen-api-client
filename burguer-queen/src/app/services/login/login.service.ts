@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { Login } from '../interfaces/Login';
+import { Login } from '../../interfaces/Login';
 import { HttpHeaders } from '@angular/common/http';
-import { LoginResponse } from '../interfaces/LoginResponse';
+import { LoginResponse } from '../../interfaces/LoginResponse';
 
 @Injectable({
   providedIn: 'root'
