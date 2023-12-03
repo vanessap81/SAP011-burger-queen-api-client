@@ -23,9 +23,24 @@
         <div class="details">
             <div class="details-screen">
                 <p class="title">HISTÓRICO DO PEDIDO</p>
-                <p class="selectedOrderDetails" *ngIf="selectedOrderData.status !== ''">Status do pedido: {{ selectedOrderData.status | uppercase }}</p>
-                <p class="selectedOrderDetails" *ngIf="selectedOrderData.createdAt !== ''">Criado em: {{ selectedOrderData.createdAt.slice(11, 16) }}</p>
-                <p class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">Ultima atualização em: {{ selectedOrderData.updatedAt.slice(11, 16) }}</p>
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.status !== ''">
+                    <p>Status do pedido: </p>
+                    <p>{{ selectedOrderData.status | uppercase }}</p>
+                </div>
+
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.createdAt !== ''">
+                    <p>Criado em: </p>
+                    <p>{{ selectedOrderData.createdAt.slice(11, 16) }}</p>
+                </div>
+
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">
+                    <p>Ultima atualização em: </p>
+                    <p>{{ selectedOrderData.updatedAt.slice(11, 16) }}</p>
+                </div>
+
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">
+                    <p>Tempo em preparo: </p>
+                </div>
             </div>
             
             <div class="buttons-container">

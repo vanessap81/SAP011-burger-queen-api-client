@@ -78,8 +78,7 @@ export class PrincipalComponent implements OnInit {
   pullOrdersList() {
     this._kitchenService.getOrders().subscribe({
       next: (data: OrderResponse[]) => {
-        this.orders = data;
-        console.log(data);
+        this.orders = data.filter((order: OrderResponse) => order.status == 'pending' || order.status == 'delivering');
         // ordenar por hora
       }
     })

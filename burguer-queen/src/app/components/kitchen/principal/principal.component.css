@@ -138,13 +138,21 @@ header button:active,
 
 .selectedOrderDetails {
     width: 90%;
-    height: 34pxem;
-    font-size: 1.1em;
-    font-weight: 500;
+    height: 34px;
+    border-radius: 8px;
     background-color: #fff;
-    color: #6F1AB6;
     margin-bottom: 10px;
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectedOrderDetails p {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #6F1AB6;
 }
 
 .buttons-container {
