@@ -4,7 +4,7 @@ export interface OrderResponse {
     client: string,
     products: [],
     status: string,
-    createdAt: Date,
-    updatedAt: Date,
+    createdAt: string,
+    updatedAt: string,
     __v: number
 }

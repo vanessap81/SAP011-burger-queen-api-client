@@ -38,6 +38,7 @@ export class OrderStatusComponent implements OnInit {
       next: (data: any) => {
         this.allOrdersList = data;
         this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == 'pending');
+        this.ordersByStatus.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
       }
     })
   }

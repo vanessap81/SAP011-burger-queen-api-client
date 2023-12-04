@@ -13,6 +13,7 @@ import { UpdatedOrderResponse } from 'src/app/interfaces/UpdatedOrderResponse';
 export class PrincipalComponent implements OnInit {
 
   orders: OrderResponse[] = [];
+
   selectedOrderData = 
     {
       _id: '',
@@ -78,8 +79,9 @@ export class PrincipalComponent implements OnInit {
   pullOrdersList() {
     this._kitchenService.getOrders().subscribe({
       next: (data: OrderResponse[]) => {
+        console.log(data);
         this.orders = data.filter((order: OrderResponse) => order.status == 'pending' || order.status == 'delivering');
-        // ordenar por hora
+        this.orders.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
       }
     })
   }
