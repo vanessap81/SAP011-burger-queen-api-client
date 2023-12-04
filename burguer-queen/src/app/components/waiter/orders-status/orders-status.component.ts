@@ -45,7 +45,7 @@ export class OrdersStatusComponent implements OnInit {
   select(status: string): void {
     this.selectedButton = status;
     this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == status);
-    // this.ordersByStatus.sort((a, b) => )
+    this.ordersByStatus.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
   }
 
   back() {

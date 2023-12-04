@@ -17,8 +17,8 @@
                 </div>
                 <div class="order-info">
                     <h3>PEDIDO </h3>
-                    <p>Criado em: {{ order.createdAt.toString().slice(11, 16) }}</p>
-                    <p>Ultima atualização: {{ order.updatedAt.toString().slice(11, 16) }}</p>
+                    <p>Criado em: {{ order.createdAt.slice(8, 10) }}/{{ order.createdAt.slice(5, 7) }} às {{ order.createdAt.slice(11, 16) }}</p>
+                    <p>Atualizado em: {{ order.updatedAt.slice(8, 10) }}/{{ order.updatedAt.slice(5, 7) }} às {{ order.updatedAt.slice(11, 16) }}</p>
                     <p>Tempo desde a criação: </p>
                 </div>
             </li>
