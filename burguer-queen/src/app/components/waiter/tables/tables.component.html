@@ -8,13 +8,13 @@
     </header>
     <main>
         <div class="tables-grid">
-            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.number)" value="`${{table.number}}`" [class.selected]="selectedButton.tableNumber === table.number">
+            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.table)" value="`${{table.table}}`" [class.selected]="selectedButton.tableNumber === table.table">
                 <p class="table">mesa</p>
-                <p class="number">{{table.number}}</p>
+                <p class="number">{{table.table}}</p>
             </button>
         </div>
         <div class="details-screen">
-            <div class="table-detail" *ngIf="selectedButton.selected === true"><p>Status: </p><p>{{ tableStatus | uppercase }}</p></div>
+            <div class="table-detail" *ngIf="selectedButton.selected === true" #selectedButton.tableNumber ><p>Status: </p><p>{{ tables[selectedButton.number - 1].status | uppercase }}</p></div>
         </div>
     </main>
 </section>
