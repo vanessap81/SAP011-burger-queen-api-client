@@ -42,8 +42,8 @@ export class PrincipalComponent implements OnInit {
   select(order: OrderResponse): void {
     this.selectedOrderData._id = order._id;
     this.selectedOrderData.status = order.status;
-    this.selectedOrderData.createdAt = order.createdAt.toString();
-    this.selectedOrderData.updatedAt = order.updatedAt.toString();
+    this.selectedOrderData.createdAt = new Date(order.createdAt).toLocaleString('pt-BR', {timeZone: 'UTC'});
+    this.selectedOrderData.updatedAt = new Date(order.updatedAt).toLocaleString('pt-BR', {timeZone: 'UTC'});
     this.updatedStatus.client = order.client;
     this.updatedStatus.userId = order.userId;
     this.updatedStatus.products = order.products;
@@ -84,6 +84,17 @@ export class PrincipalComponent implements OnInit {
         this.orders.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
       }
     })
+  }
+
+  timeSince() {
+    let now = new Date().toLocaleString('pt-BR', {timeZone: 'UTC'});
+    let since = this.selectedOrderData.updatedAt;
+    // parse transforma data em milisegundos
+    let nowParsed = Date.parse(now);
+    let sinceParsed = Date.parse(since);
+    console.log(now);
+    console.log(since);
+    // let timeInPrepare = new Date(nowParsed - sinceParsed);
   }
 
   goToOdersStatus() {

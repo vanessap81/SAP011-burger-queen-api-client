@@ -16,7 +16,7 @@
                 </div>
                 <div class="history">
                     <p>Hora do pedido: {{ order.createdAt.toString().slice(11, 16) }}</p>
-                    <button class="show-historic" #order._id (click)="select(order)" [class.selected]="selectedOrderData._id === order._id">VER HISTÓRICO</button>
+                    <button class="show-historic" #order._id (click)="select(order)" (click)="timeSince()" [class.selected]="selectedOrderData._id === order._id">VER HISTÓRICO</button>
                 </div>
             </li>
         </ul>
@@ -30,12 +30,12 @@
 
                 <div class="selectedOrderDetails" *ngIf="selectedOrderData.createdAt !== ''">
                     <p>Criado em: </p>
-                    <p>{{ selectedOrderData.createdAt.slice(11, 16) }}</p>
+                    <p>{{ selectedOrderData.createdAt.slice(11, 17) }}</p>
                 </div>
 
                 <div class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">
                     <p>Ultima atualização em: </p>
-                    <p>{{ selectedOrderData.updatedAt.slice(11, 16) }}</p>
+                    <p>{{ selectedOrderData.updatedAt.slice(11, 17) }}</p>
                 </div>
 
                 <div class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">
