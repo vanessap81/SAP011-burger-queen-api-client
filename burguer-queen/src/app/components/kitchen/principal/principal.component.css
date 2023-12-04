@@ -75,7 +75,7 @@ main {
     background-color: #344d67;
 }
 
-.orders li {
+.orders .order {
     width: 90%;
     height: fit-content;
     list-style: none;
@@ -87,6 +87,14 @@ main {
     justify-content: space-between;
     margin-bottom: 20px;
     padding: 15px;
+}
+
+.margin {
+    margin-bottom: 15px;
+}
+
+.order-info li {
+    list-style: none;
 }
 
 .show-historic {

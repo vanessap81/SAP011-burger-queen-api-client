@@ -126,6 +126,14 @@ h1 {
     font-weight: bold;
 }
 
+.table-info li {
+    list-style: none;
+}
+
+.margin {
+    margin-bottom: 15px;
+}
+
 button {
     width: 190px;
     min-height: 49px;

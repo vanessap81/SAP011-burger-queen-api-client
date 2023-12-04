@@ -10,6 +10,7 @@ import { UpdatedOrderResponse } from 'src/app/interfaces/UpdatedOrderResponse';
 export class KitchenService {
   private readonly apiUrlOrders = 'https://burger-queen-api-jade.vercel.app/orders';
   private readonly apiUrlUpdateOrders = 'https://burger-queen-api-jade.vercel.app/orders';
+  private readonly apiUrlProducts = 'https://burger-queen-api-jade.vercel.app/products';
   storage: Storage;
 
   constructor(
@@ -34,5 +35,14 @@ export class KitchenService {
       'Authorization': `Bearer ${token}`
     })
     return this.http.put<UpdatedOrderResponse>(`${this.apiUrlUpdateOrders}/${orderId}`, order, { headers });
+  }
+
+  getProducts(): Observable<any> {
+    const token: any = window.localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get(this.apiUrlProducts, { headers });
   }
 }

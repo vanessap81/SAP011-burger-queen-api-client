@@ -115,6 +115,14 @@ h1 {
     width: 55%;
 }
 
+.table-info li {
+    list-style: none;
+}
+
+.margin {
+    margin-bottom: 15px;
+}
+
 .order-info {
     width: 45%;
 }

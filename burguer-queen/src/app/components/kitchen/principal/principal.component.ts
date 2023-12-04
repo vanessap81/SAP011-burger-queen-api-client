@@ -3,6 +3,7 @@ import { KitchenService } from 'src/app/services/kitchen/kitchen.service';
 import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 import { UpdatedOrder } from 'src/app/interfaces/UpdatedOrder';
 import { UpdatedOrderResponse } from 'src/app/interfaces/UpdatedOrderResponse';
+import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 
 
 @Component({
@@ -29,10 +30,13 @@ export class PrincipalComponent implements OnInit {
     status: ''
   };
 
+  productsList: ProductResponse[] = [];
+
   @Output() toOrders = new EventEmitter();
 
   ngOnInit(): void {
     this.pullOrdersList();
+    this.getProductsList();
   }
 
   constructor(
@@ -82,6 +86,15 @@ export class PrincipalComponent implements OnInit {
         console.log(data);
         this.orders = data.filter((order: OrderResponse) => order.status == 'pending' || order.status == 'delivering');
         this.orders.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
+      }
+    })
+  }
+
+  getProductsList() {
+    this._kitchenService.getProducts().subscribe({
+      next: (data: any) => {
+        this.productsList = data;
+        console.log(this.productsList);
       }
     })
   }

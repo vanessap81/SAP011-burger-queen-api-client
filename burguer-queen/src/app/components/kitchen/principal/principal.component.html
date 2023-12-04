@@ -7,12 +7,12 @@
         <ul class="orders">
             <li class="order" *ngFor="let order of orders">
                 <div class="order-info">
-                    <h3>MESA </h3>
-                    <p>Nome do cliente: {{ order.client }}</p>
+                    <h3 class="margin" >MESA </h3>
+                    <p class="margin" >Nome do cliente: {{ order.client }}</p>
                     <p>Itens: </p>
-                    <div *ngFor="let item of order.products">
-                        <p>{{ item }}</p>
-                    </div>
+                    <ul *ngFor="let item of order.products">
+                        <li>{{ item.quantity }} x {{ item.productId }}</li>
+                    </ul>
                 </div>
                 <div class="history">
                     <p>Hora do pedido: {{ order.createdAt.toString().slice(11, 16) }}</p>
