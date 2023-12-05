@@ -57,7 +57,7 @@ export class PrincipalComponent implements OnInit {
 
   acceptOrder(order: UpdatedOrder, id: string) {
     if (this.selectedOrderData.status === 'pending') {
-      this.updatedStatus.status = 'delivering';
+      this.updatedStatus.status = 'preparing';
       this._kitchenService.updateOrderStatus(order, id).subscribe({
         next: (data: UpdatedOrderResponse) => {
           console.log(data);
@@ -69,8 +69,8 @@ export class PrincipalComponent implements OnInit {
   }
 
   deliverOrder(order: UpdatedOrder, id: string) {
-    if (this.selectedOrderData.status === 'delivering') {
-      this.updatedStatus.status = 'delivered';
+    if (this.selectedOrderData.status === 'preparing') {
+      this.updatedStatus.status = 'delivering';
       this._kitchenService.updateOrderStatus(order, id).subscribe({
         next: (data: UpdatedOrderResponse) => {
           console.log(data);
@@ -86,7 +86,7 @@ export class PrincipalComponent implements OnInit {
       next: (data: OrderResponse[]) => {
         console.log(data);
 
-        this.orders = data.filter((order: OrderResponse) => order.status == 'pending' || order.status == 'delivering');
+        this.orders = data.filter((order: OrderResponse) => order.status == 'pending' || order.status == 'preparing');
         this.orders.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
       }
     })
@@ -100,11 +100,6 @@ export class PrincipalComponent implements OnInit {
       }
     })
   }
-
-  // linkIdAndName() {
-  //   for (let i = 0; i < this.orders.length; i++) {
-      
-  // }
 
   timeSince() {
     let now = new Date().toLocaleString('pt-BR', {timeZone: 'UTC'});

@@ -11,7 +11,8 @@ export class OrderStatusComponent implements OnInit {
 
   statuses = [
     {button: 'aguardando aceite', status: 'pending'},
-    {button: 'em preparo', status: 'delivering'},
+    {button: 'em preparo', status: 'preparing'},
+    {button: 'em entrega', status: 'delivering'},
     {button: 'entregues', status: 'delivered'},
     {button: 'cancelados', status: 'canceled'}
   ]
