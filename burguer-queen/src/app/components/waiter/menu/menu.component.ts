@@ -52,6 +52,7 @@ export class MenuComponent implements OnInit {
   getProductsList() {
     const userId: any = window.localStorage.getItem('userId');
     this.order.userId = userId;
+    this.order.table = this.infoFromTables.table;
     this._SERVICE.getProducts().subscribe({
       next: (data: ProductResponse[]) => {
         // console.log(data);

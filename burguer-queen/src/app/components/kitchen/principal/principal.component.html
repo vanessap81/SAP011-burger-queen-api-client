@@ -7,8 +7,8 @@
         <ul class="orders">
             <li class="order" *ngFor="let order of orders">
                 <div class="order-info">
-                    <h3 class="margin" >MESA </h3>
-                    <p class="margin" >Nome do cliente: {{ order.client }}</p>
+                    <h3 class="margin">MESA {{ order.table }}</h3>
+                    <p class="margin">Nome do cliente: {{ order.client }}</p>
                     <p>Itens: </p>
                     <ul *ngFor="let item of order.products">
                         <li>{{ item.quantity }} x {{ item.productId }}</li>

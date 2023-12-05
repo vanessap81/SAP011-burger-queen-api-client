@@ -11,7 +11,7 @@
         <ul class="orders-display">
             <li class="orders" *ngFor="let order of ordersByStatus">
                 <div class="table-info">
-                    <h3>MESA </h3>
+                    <h3>MESA {{ order.table }}</h3>
                     <p class="margin">Nome do cliente: {{ order.client }}</p>
                     <ul>
                         <li *ngFor="let product of order.products">{{ product.quantity }} x {{ product.productId }}</li>
