@@ -84,6 +84,7 @@ export class PrincipalComponent implements OnInit {
     this._kitchenService.getOrders().subscribe({
       next: (data: OrderResponse[]) => {
         console.log(data);
+
         this.orders = data.filter((order: OrderResponse) => order.status == 'pending' || order.status == 'delivering');
         this.orders.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
       }
@@ -98,6 +99,11 @@ export class PrincipalComponent implements OnInit {
       }
     })
   }
+
+  // linkIdAndName() {
+  //   for (let i = 0; i < this.orders.length; i++) {
+      
+  // }
 
   timeSince() {
     let now = new Date().toLocaleString('pt-BR', {timeZone: 'UTC'});

@@ -3,7 +3,6 @@ import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 import { WaiterService } from 'src/app/services/waiter/waiter.service';
 import { OrderData } from 'src/app/interfaces/OrderData';
 import { Ordermodel } from 'src/app/interfaces/OrderModel';
-import { Products } from 'src/app/interfaces/Products';
 import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 
 @Component({
@@ -92,7 +91,6 @@ export class MenuComponent implements OnInit {
 
   removeProduct(event: Event, product: ProductResponse, productPrice: number) {
     const target = event.target as HTMLInputElement;
-    // product.quantity--;
     if (this.order.products.length > 0 && this.setOfIdProducts.has(target.value) === true) {
       this.order.products.forEach(item => {
         if (item.productId === target.value && item.quantity > 1){
@@ -112,7 +110,11 @@ export class MenuComponent implements OnInit {
     this.order.products = filtredProducts;
   };
 
-  sendThisOrder(order: Ordermodel) {
+  sendThisOrder() {
+    console.log('abrir common confirmação')
+  }
+
+  confirmOrder(order: Ordermodel) {
     console.log('Pedido enviado');
     console.log(this.order);
     
