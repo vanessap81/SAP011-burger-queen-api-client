@@ -58,10 +58,12 @@
 
             <button class="send-order" (click)="sendThisOrder()" *ngIf="order.products.length !== 0">ENVIAR PEDIDO</button>
 
-            <!-- <div class="modal">
-                Vamos fazer um teste
-            </div> -->
-
         </div>
+
+        <div class="modal-container" *ngIf="showConfirmation">
+            <app-confirm class="modal"></app-confirm>
+            <div class="overlay"></div>
+        </div>
+
     </main>
 </section>

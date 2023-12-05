@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfirmComponent } from '../../commons/confirm/confirm.component';
+import { ConfirmComponent } from './confirm.component';
 
 
 
@@ -10,6 +10,9 @@ import { ConfirmComponent } from '../../commons/confirm/confirm.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ConfirmComponent
   ]
 })
-export class MenuModule { }
+export class ConfirmModule { }

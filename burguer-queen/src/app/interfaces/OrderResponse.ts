@@ -7,5 +7,6 @@ export interface OrderResponse {
     status: string,
     createdAt: string,
     updatedAt: string,
+    table: string
     __v: number
 }

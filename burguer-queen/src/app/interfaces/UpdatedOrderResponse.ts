@@ -9,6 +9,7 @@ export interface UpdatedOrderResponse {
         status: string,
         createdAt: Date,
         updatedAt: Date,
+        table: string
         __v: number
     }
 }

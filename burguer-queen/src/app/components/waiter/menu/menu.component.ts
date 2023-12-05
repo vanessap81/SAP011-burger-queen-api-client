@@ -25,8 +25,11 @@ export class MenuComponent implements OnInit {
   order: Ordermodel = {
     userId: '',
     client: '',
-    products: []
-  }; 
+    products: [],
+    table: ''
+  };
+
+  showConfirmation: boolean = false;
 
 
   @Input() orderData: OrderData = {name: '', table: ''};
@@ -111,7 +114,8 @@ export class MenuComponent implements OnInit {
   };
 
   sendThisOrder() {
-    console.log('abrir common confirmação')
+    this.showConfirmation !== this.showConfirmation;
+    console.log(this.showConfirmation);
   }
 
   confirmOrder(order: Ordermodel) {

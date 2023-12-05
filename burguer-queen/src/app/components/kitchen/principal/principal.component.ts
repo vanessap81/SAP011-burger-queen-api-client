@@ -27,7 +27,8 @@ export class PrincipalComponent implements OnInit {
     userId: '',
     client: '',
     products: [],
-    status: ''
+    status: '',
+    table: ''
   };
 
   productsList: ProductResponse[] = [];
