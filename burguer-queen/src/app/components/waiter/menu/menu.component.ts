@@ -45,8 +45,10 @@ export class MenuComponent implements OnInit {
     this.getProductsList();
     console.log('Você está na tela de Menu');
     this.infoFromTables.name = this.orderData.name;
-    this.order.client = this.orderData.name;
     this.infoFromTables.table = this.orderData.table;
+    this.order.client = this.orderData.name;
+    this.order.table = this.orderData.table;
+
   }
   
   getProductsList() {
@@ -115,7 +117,7 @@ export class MenuComponent implements OnInit {
   };
 
   sendThisOrder() {
-    this.showConfirmation !== this.showConfirmation;
+    this.showConfirmation = true;
     console.log(this.showConfirmation);
   }
 
@@ -127,6 +129,13 @@ export class MenuComponent implements OnInit {
       next: (data: OrderResponse) => {
         console.log(data);
       }
-    })
+    });
+
+    this.showConfirmation = false;
+    this.back()
+  }
+
+  cancelConfirmation() {
+    this.showConfirmation = false;
   }
 }
