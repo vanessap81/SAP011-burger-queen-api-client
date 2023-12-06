@@ -8,7 +8,12 @@
     </header>
     <main>
         <div class="tables-grid">
-            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.table)" value="`${{table.table}}`" [class.selected]="selectedButton.tableNumber === table.table">
+            <button class="tables" 
+                *ngFor="let table of tables" #table.number 
+                (click)="checkTable(table.table)" 
+                value="`${{table.table}}`" 
+                [class.selected]="selectedButton.tableNumber === table.table" 
+            >
                 <p class="table">mesa</p>
                 <p class="number">{{table.table}}</p>
             </button>
@@ -28,9 +33,11 @@
                         <p>Última atualização: </p><p>{{ tables[selectedButton.number - 1].updatedAt.slice(11, 17) | uppercase }}</p>
                 </div>
             </div>
-            <!-- <div class="buttons" *ngIf="tables[selectedButton.number - 1].status == 'delivering'">
-                <button>MARCAR COMO ENTREGUE</button>
-            </div> -->
+            <div class="buttons" *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status === 'delivering' ">
+                <button class="btn-delivered">MARCAR COMO ENTREGUE</button>
+            </div>
         </div>
     </main>
 </section>
+
+<!-- [class.ready]="tables[selectedButton.number - 1].status === 'delivering'" -->

@@ -16,6 +16,8 @@ export class TablesComponent {
   selectedButton = {selected: false, tableNumber: '', number: 0, client: ''};
   ordersList: OrderResponse[] = [];
 
+  tableIndex = this.selectedButton.number - 1;
+
   tables: TableModel[] = [
     { table: '01', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
     { table: '02', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
