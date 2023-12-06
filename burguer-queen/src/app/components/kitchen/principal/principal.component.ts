@@ -5,12 +5,41 @@ import { UpdatedOrder } from 'src/app/interfaces/UpdatedOrder';
 import { UpdatedOrderResponse } from 'src/app/interfaces/UpdatedOrderResponse';
 import { ProductResponse } from 'src/app/interfaces/ProductResponse';
 
+import {
+  trigger,
+  style,
+  animate,
+  transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.css']
+  styleUrls: ['./principal.component.css'],
+  animations: [
+    trigger('overlay', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('250ms', style({ opacity: .5 })),
+      ]),
+      transition(':leave', [
+        animate('500ms', style({ opacity: 0 }))
+      ])
+    ]),
+    
+    trigger('modal', [
+      transition(':enter', [
+        style({ top: -999 }),
+        animate('500ms', style({ top: '50%' })),
+      ]),
+      transition(':leave', [
+        animate('250ms', style({ top: -999 }))
+      ])
+    ]),
+  ]
 })
+
+
 export class PrincipalComponent implements OnInit {
 
   orders: OrderResponse[] = [];
@@ -32,6 +61,8 @@ export class PrincipalComponent implements OnInit {
   };
 
   productsList: ProductResponse[] = [];
+  showAcceptanceConfirmation: boolean = false;
+  showDeliveringConfirmation: boolean = false;
 
   @Output() toOrders = new EventEmitter();
 
@@ -56,6 +87,22 @@ export class PrincipalComponent implements OnInit {
     // console.log(this.selectedOrderData);
   }
 
+  acceptButton() {
+    this.showAcceptanceConfirmation = true;
+  }
+
+  deliverButton() {
+    this.showDeliveringConfirmation = true;
+  }
+
+  cancelDelivering() {
+    this.showDeliveringConfirmation = false;
+  }
+
+  cancelAcceptance() {
+    this.showAcceptanceConfirmation = false;
+  }
+
   acceptOrder(order: UpdatedOrder, id: string) {
     if (this.selectedOrderData.status === 'pending') {
       this.updatedStatus.status = 'preparing';
@@ -63,7 +110,8 @@ export class PrincipalComponent implements OnInit {
         next: (data: UpdatedOrderResponse) => {
           console.log(data);
         }
-      })
+      });
+      this.showAcceptanceConfirmation = false;
     } else {
       console.log('O pedido já está em preparo');
     }
@@ -76,9 +124,10 @@ export class PrincipalComponent implements OnInit {
         next: (data: UpdatedOrderResponse) => {
           console.log(data);
         }
-      })
+      });
+      this.showDeliveringConfirmation = false;
     } else {
-      console.log('O pedido precisa ser encaminhado para o preparo antes de ser marcaco como pronto');
+      console.log('O pedido precisa ser encaminhado para o preparo antes de ser marcaDo como pronto');
     }
   }
 

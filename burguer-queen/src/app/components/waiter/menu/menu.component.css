@@ -288,6 +288,10 @@ main {
     height: 254px;
     background: #fff;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     box-shadow: 0 2px 8px #333;
     position: fixed;
     left: 50%;
@@ -306,13 +310,6 @@ main {
     top: 0;
     opacity: 0.5;
     z-index: 10;
-}
-
-.modal {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .modal h1 {

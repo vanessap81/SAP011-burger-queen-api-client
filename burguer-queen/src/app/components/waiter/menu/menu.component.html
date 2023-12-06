@@ -61,14 +61,14 @@
         </div>
 
         <div class="modal-container" *ngIf="showConfirmation">
-            <div class="modal">
+            <div class="modal" @modal>
                 <h1>Enviar pedido para cozinha?</h1>
                 <div class="buttons">
                     <button class="confirm" (click)="confirmOrder(order)">ENVIAR</button>
                     <button class="cancel" (click)="cancelConfirmation()">CANCELAR</button>
                 </div>
             </div>
-            <div class="overlay"></div>
+            <div class="overlay" @overlay></div>
         </div>
 
     </main>

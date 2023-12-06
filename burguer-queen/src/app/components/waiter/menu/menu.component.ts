@@ -5,10 +5,37 @@ import { OrderData } from 'src/app/interfaces/OrderData';
 import { Ordermodel } from 'src/app/interfaces/OrderModel';
 import { OrderResponse } from 'src/app/interfaces/OrderResponse';
 
+import {
+  trigger,
+  style,
+  animate,
+  transition } from '@angular/animations';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  animations: [
+    trigger('overlay', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('250ms', style({ opacity: .5 })),
+      ]),
+      transition(':leave', [
+        animate('500ms', style({ opacity: 0 }))
+      ])
+    ]),
+    
+    trigger('modal', [
+      transition(':enter', [
+        style({ top: -999 }),
+        animate('500ms', style({ top: '50%' })),
+      ]),
+      transition(':leave', [
+        animate('250ms', style({ top: -999 }))
+      ])
+    ]),
+  ]
 })
 export class MenuComponent implements OnInit {
 
@@ -118,7 +145,6 @@ export class MenuComponent implements OnInit {
 
   sendThisOrder() {
     this.showConfirmation = true;
-    console.log(this.showConfirmation);
   }
 
   confirmOrder(order: Ordermodel) {
