@@ -17,18 +17,18 @@ export class TablesComponent {
   ordersList: OrderResponse[] = [];
 
   tables: TableModel[] = [
-    { table: '01', _id: '', client: '', status: 'pending'}, 
-    { table: '02', _id: '', client: '', status: 'free'}, 
-    { table: '03', _id: '', client: '', status: 'free'}, 
-    { table: '04', _id: '', client: '', status: 'free'}, 
-    { table: '05', _id: '', client: '', status: 'free'}, 
-    { table: '06', _id: '', client: '', status: 'free'}, 
-    { table: '07', _id: '', client: '', status: 'free'}, 
-    { table: '08', _id: '', client: '', status: 'free'}, 
-    { table: '09', _id: '', client: '', status: 'free'}, 
-    { table: '10', _id: '', client: '', status: 'free'}, 
-    { table: '11', _id: '', client: '', status: 'free'}, 
-    { table: '12', _id: '', client: '', status: 'free'}, 
+    { table: '01', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '02', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '03', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '04', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '05', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '06', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '07', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '08', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '09', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '10', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '11', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
+    { table: '12', _id: '', client: '', status: 'free', products: [], updatedAt: ''}, 
   ];
 
   orderData = {name: '', table: ''};
@@ -56,16 +56,27 @@ export class TablesComponent {
         console.log(data);
         this.ordersList = data;
       }
-    })
+    });
   }
 
   checkTable(table: string) {
+
     this.selectedButton.selected = true;
     this.selectedButton.tableNumber = table;
     this.orderData.table = table;
-
     let tableNumber = parseInt(table);
     this.selectedButton.number = tableNumber;
+
+    for (let i = 0; i < this.ordersList.length; i++) {
+      if (this.ordersList[i].table === table) {
+        this.tables[tableNumber - 1]._id = this.ordersList[i]._id;
+        this.tables[tableNumber - 1].status = this.ordersList[i].status;
+        this.tables[tableNumber - 1].client = this.ordersList[i].client;
+        this.tables[tableNumber - 1].updatedAt = new Date(this.ordersList[i].updatedAt).toLocaleString('pt-BR', {timeZone: 'UTC'});
+        console.log(this.tables[tableNumber - 1]);
+      }
+    }
+
   }
 
   prepareTable(event: Event) {

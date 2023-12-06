@@ -141,7 +141,21 @@ main {
     background: rgba(255, 255, 255, 0.60);
     box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.details {
+    /* width: 368px;
+    height: 572px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.60);
+    box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.25); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .table-detail {

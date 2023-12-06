@@ -14,7 +14,23 @@
             </button>
         </div>
         <div class="details-screen">
-            <div class="table-detail" *ngIf="selectedButton.selected === true" #selectedButton.tableNumber ><p>Status: </p><p>{{ tables[selectedButton.number - 1].status | uppercase }}</p></div>
+            <div class="details">
+                <div class="table-detail" 
+                    *ngIf="selectedButton.selected === true" #selectedButton.tableNumber>
+                        <p>Status: </p><p>{{ tables[selectedButton.number - 1].status | uppercase }}</p>
+                </div>
+                <div class="table-detail" 
+                    *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].client !== '' " #selectedButton.tableNumber>
+                        <p>Cliente: </p><p>{{ tables[selectedButton.number - 1].client | uppercase }}</p>
+                </div>
+                <div class="table-detail" 
+                    *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].updatedAt !== '' " #selectedButton.tableNumber>
+                        <p>Última atualização: </p><p>{{ tables[selectedButton.number - 1].updatedAt.slice(11, 17) | uppercase }}</p>
+                </div>
+            </div>
+            <!-- <div class="buttons" *ngIf="tables[selectedButton.number - 1].status == 'delivering'">
+                <button>MARCAR COMO ENTREGUE</button>
+            </div> -->
         </div>
     </main>
 </section>

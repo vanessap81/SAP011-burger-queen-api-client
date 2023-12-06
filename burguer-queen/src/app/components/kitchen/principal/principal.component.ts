@@ -52,6 +52,7 @@ export class PrincipalComponent implements OnInit {
     this.updatedStatus.client = order.client;
     this.updatedStatus.userId = order.userId;
     this.updatedStatus.products = order.products;
+    this.updatedStatus.table = order.table;
     // console.log(this.selectedOrderData);
   }
 
