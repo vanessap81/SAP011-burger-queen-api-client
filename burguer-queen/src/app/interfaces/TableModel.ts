@@ -1,6 +1,7 @@
 import { Products } from "./Products"
 export interface TableModel {
-    table: string
+    table: string,
+    userId: string,
     _id: string, 
     client: string,
     status: string,

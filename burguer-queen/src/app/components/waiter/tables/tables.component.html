@@ -34,8 +34,19 @@
                 </div>
             </div>
             <div class="buttons" *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status === 'delivering' ">
-                <button class="btn-delivered">MARCAR COMO ENTREGUE</button>
+                <button class="btn-delivered" (click)="deliverButton()">MARCAR COMO ENTREGUE</button>
             </div>
+        </div>
+
+        <div class="modal-container" *ngIf="showConfirmation">
+            <div class="modal" @modal>
+                <h1>Marcar pedido como entregue?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="deliverOrder(updatedStatus, selectedButton.id)">SIM</button>
+                    <button class="cancel" (click)="cancelConfirmation()">CANCELAR</button>
+                </div>
+            </div>
+            <div class="overlay" @overlay></div>
         </div>
     </main>
 </section>
