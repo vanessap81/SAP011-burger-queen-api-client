@@ -80,6 +80,7 @@ export class TablesComponent {
   @Output() clientNameAndTable = new EventEmitter<OrderData>();
   @Output() viewTablesStatus = new EventEmitter<any>();
   @Output() leaveWaiterSection = new EventEmitter<any>();
+  @Output() goToMenu = new EventEmitter<OrderData>();
 
   OnInit(): void {}
 
@@ -118,7 +119,8 @@ export class TablesComponent {
         this.tables[tableNumber - 1].userId = this.ordersList[i].userId;
         this.tables[tableNumber - 1].products = this.ordersList[i].products;
         this.selectedButton.id = this.ordersList[i]._id;
-        console.log(this.tables[tableNumber - 1]);
+        this.selectedButton.client = this.ordersList[i].client
+        // console.log(this.tables[tableNumber - 1]);
       }
     }
 
@@ -127,7 +129,7 @@ export class TablesComponent {
     this.updatedStatus.products = this.tables[tableNumber - 1].products;
     this.updatedStatus.status = this.tables[tableNumber - 1].status;
     this.updatedStatus.table = this.tables[tableNumber - 1].table;
-    console.log(this.updatedStatus);
+    // console.log(this.updatedStatus);
   }
 
   prepareTable(event: Event) {
@@ -141,6 +143,12 @@ export class TablesComponent {
 
   startOrder() {
     this.clientNameAndTable.emit(this.orderData);
+  }
+
+  openMenu() {
+    this.orderData.name = this.selectedButton.client;
+    this.orderData.table = this.selectedButton.tableNumber;
+    this.goToMenu.emit(this.orderData);
   }
 
   viewStatusOrders() {

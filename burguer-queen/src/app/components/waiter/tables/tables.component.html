@@ -36,6 +36,10 @@
             <div class="buttons" *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status === 'delivering' ">
                 <button class="btn-delivered" (click)="deliverButton()">MARCAR COMO ENTREGUE</button>
             </div>
+            <div class="buttons" 
+                *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status !== 'free' && tables[selectedButton.number - 1].status !== 'delivering'">
+                <button class="btn-add-iten" (click)="openMenu()">ADICIONAR ITENS À MESA</button>
+            </div>
         </div>
 
         <div class="modal-container" *ngIf="showConfirmation">

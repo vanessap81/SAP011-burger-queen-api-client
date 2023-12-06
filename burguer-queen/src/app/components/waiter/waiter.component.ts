@@ -29,11 +29,19 @@ export class WaiterComponent implements OnInit {
     this.showOrders = showOrders;
   }
 
-  openMenu(event: OrderData) {
+  newOrder(event: OrderData) {
     this.orderData = event;
     this.orderData.name = event.name;
     this.orderData.table = event.table;
     console.log('Enviado do componente pai o OrderData', this.orderData);
+    this.handleComponents(false, true, false);
+    this._route.navigate(['waiter/menu']);
+  }
+
+  goToMenu(event: OrderData) {
+    this.orderData = event;
+    this.orderData.name = event.name;
+    this.orderData.table = event.table;
     this.handleComponents(false, true, false);
     this._route.navigate(['waiter/menu']);
   }
