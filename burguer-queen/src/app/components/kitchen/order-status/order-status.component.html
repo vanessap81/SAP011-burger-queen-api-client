@@ -13,7 +13,6 @@
                 <div class="table-info">
                     <h3>MESA {{ order.table }}</h3>
                     <p class="margin">Nome do cliente: {{ order.client }}</p>
-                    <p class="margin">Itens:</p>
                     <ul>
                         <li *ngFor="let product of order.products">{{ product.quantity }} x {{ product.productId }}</li>
                     </ul>

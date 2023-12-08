@@ -2,22 +2,57 @@
     <header>
         <button id="logout" (click)="logout()"><i class="bi bi-arrow-left-circle-fill"></i></button>
         <h1 class="client-name">Nome do cliente:</h1>
-        <input class="clientName" type="text" name="clientName" (blur)="prepareTable($event)">
-        <button class="orders" id="start-order" [disabled]="!isAllReady" (click)="startOrder()">INICIAR PEDIDO</button>
+        <input class="clientName" type="text" name="clientName" #name (blur)="prepareTable($event)">
+        <button class="orders" id="start-order" (click)="startOrder()">INICIAR PEDIDO</button>
         <button class="orders" id="order-status" (click)="viewStatusOrders()">VER STATUS</button>
     </header>
     <main>
         <div class="tables-grid">
-            <button class="tables" *ngFor="let table of tables" #table.number (click)="checkTable(table.number)" value="`${{table.number}}`" [class.selected]="selectedButton.tableNumber === table.number">
+            <button class="tables" 
+                *ngFor="let table of tables" #table.number 
+                (click)="checkTable(table.table)" 
+                value="`${{table.table}}`" 
+                [class.selected]="selectedButton.tableNumber === table.table" 
+            >
                 <p class="table">mesa</p>
-                <p class="number">{{table.number}}</p>
+                <p class="number">{{table.table}}</p>
             </button>
         </div>
         <div class="details-screen">
-            <div class="table-detail" *ngIf="selectedButton.selected === true"><p>Status: </p><p>{{ tableStatus | uppercase }}</p></div>
+            <div class="details">
+                <div class="table-detail" 
+                    *ngIf="selectedButton.selected === true" #selectedButton.tableNumber>
+                        <p>Status: </p><p>{{ tables[selectedButton.number - 1].status | uppercase }}</p>
+                </div>
+                <div class="table-detail" 
+                    *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].client !== '' " #selectedButton.tableNumber>
+                        <p>Cliente: </p><p>{{ tables[selectedButton.number - 1].client | uppercase }}</p>
+                </div>
+                <div class="table-detail" 
+                    *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].updatedAt !== '' " #selectedButton.tableNumber>
+                        <p>Última atualização: </p><p>{{ tables[selectedButton.number - 1].updatedAt.slice(11, 17) | uppercase }}</p>
+                </div>
+            </div>
+            <div class="buttons" *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status === 'delivering' ">
+                <button class="btn-delivered" (click)="deliverButton()">MARCAR COMO ENTREGUE</button>
+            </div>
+            <div class="buttons" 
+                *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status !== 'free' && tables[selectedButton.number - 1].status !== 'delivering'">
+                <button class="btn-add-iten" (click)="openMenu()">ADICIONAR ITENS À MESA</button>
+            </div>
+        </div>
+
+        <div class="modal-container" *ngIf="showConfirmation">
+            <div class="modal" @modal>
+                <h1>Marcar pedido como entregue?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="deliverOrder(updatedStatus, selectedButton.id)">SIM</button>
+                    <button class="cancel" (click)="cancelConfirmation()">CANCELAR</button>
+                </div>
+            </div>
+            <div class="overlay" @overlay></div>
         </div>
     </main>
 </section>
 
-
-<!-- [class.selected]="selectedButton.tableNumber === table.number && selectedButton.lastClicked !== '00'" -->
+<!-- [class.ready]="tables[selectedButton.number - 1].status === 'delivering'" -->

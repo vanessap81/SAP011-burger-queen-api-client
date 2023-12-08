@@ -1,0 +1,78 @@
+<section class="container">
+    <header>
+        <h1 class="client-name">PEDIDOS</h1>
+        <button id="order-status" (click)="goToOdersStatus()">FILTRAR POR STATUS</button>
+    </header>
+    <main>
+        <ul class="orders">
+            <li class="order" *ngFor="let order of orders">
+                <div class="order-info">
+                    <h3 class="margin">MESA {{ order.table }}</h3>
+                    <p class="margin">Nome do cliente: {{ order.client }}</p>
+                    <p>Itens: </p>
+                    <ul *ngFor="let item of order.products">
+                        <li>{{ item.quantity }} x {{ item.productId }}</li>
+                    </ul>
+                </div>
+                <div class="history">
+                    <p>Hora do pedido: {{ order.createdAt.toString().slice(11, 16) }}</p>
+                    <button class="show-historic" #order._id (click)="select(order)" (click)="timeSince()" [class.selected]="selectedOrderData._id === order._id">VER HISTÓRICO</button>
+                </div>
+            </li>
+        </ul>
+        <div class="details">
+            <div class="details-screen">
+                <p class="title">HISTÓRICO DO PEDIDO</p>
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.status !== ''">
+                    <p>Status do pedido: </p>
+                    <p>{{ selectedOrderData.status | uppercase }}</p>
+                </div>
+
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.createdAt !== ''">
+                    <p>Criado em: </p>
+                    <p>{{ selectedOrderData.createdAt.slice(11, 17) }}</p>
+                </div>
+
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">
+                    <p>Ultima atualização em: </p>
+                    <p>{{ selectedOrderData.updatedAt.slice(11, 17) }}</p>
+                </div>
+
+                <div class="selectedOrderDetails" *ngIf="selectedOrderData.updatedAt !== ''">
+                    <p>Tempo em preparo: </p>
+                </div>
+            </div>
+            
+            <div class="buttons-container">
+                <button class="change-order-status" (click)="acceptButton()">ACEITAR PEDIDO</button>
+                <button class="change-order-status" (click)="deliverButton()">MARCAR COMO PRONTO</button>
+            </div>
+        </div>
+        
+        <div class="modal-container" *ngIf="showAcceptanceConfirmation">
+            <div class="modal" @modal>
+                <h1>Iniciar preparo do pedido?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="acceptOrder(updatedStatus, selectedOrderData._id)">ACEITAR</button>
+                    <button class="cancel" (click)="cancelAcceptance()">CANCELAR</button>
+                </div>
+            </div>
+            <div class="overlay" @overlay></div>
+        </div>
+
+        <div class="modal-container" *ngIf="showDeliveringConfirmation">
+            <div class="modal" @modal>
+                <h1>Marcar pedido como pronto?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="deliverOrder(updatedStatus, selectedOrderData._id)">SIM</button>
+                    <button class="cancel" (click)="cancelDelivering()">CANCELAR</button>
+                </div>
+            </div>
+            <div class="overlay" @overlay></div>
+        </div>
+
+    </main>
+</section>
+
+
+

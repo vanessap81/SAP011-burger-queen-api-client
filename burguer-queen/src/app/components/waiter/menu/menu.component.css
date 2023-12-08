@@ -101,11 +101,12 @@ main {
     height: 40px;
     text-align: center;
     border-radius: 12px;
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-weight: bold;
-    background: #FFF;
+    color: #fff;
+    /* background: #FFF;
     border: none;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
     padding: 8px;
 }
 
@@ -140,7 +141,7 @@ main {
     width: 140px;
     height: 100px;
     /* border: solid 1px #fff; */
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .menu li .quantity-container {
@@ -160,6 +161,14 @@ main {
     font-weight: bold;
     font-size: 1.5em;
     margin: 0 15px;
+}
+
+.send-order:active,
+.quantityButtons:active {
+    background: #9400FF;
+    box-shadow: inset 9px 9px 10px #573391,
+                inset -9px -9px 10px #6F1AB6;
+    color: #FFF;
 }
 
 .details-screen {
@@ -183,9 +192,11 @@ main {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 10px;
+    margin-bottom: 10px;
 }
 
+.total-info p,
 .order-info p {
     height: 80%;
     border-radius: 12px;
@@ -193,10 +204,141 @@ main {
     font-weight: bold;
     background: #FFF;
     border: none;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 5px 20px;
+    text-align: center;
+    padding: 5px;
 }
 
-.selected-products {
+.qtd {
+    width: 15%;
+}
+
+.description {
+    width: 60%;
+}
+
+.price {
+    width: 20%;
+}
+
+.chosen-products {
     width: 350px;
+}
+
+.chosen-products li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 5px;
+}
+
+.chosen-products li p {
+    height: 80%;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    /* background: #FFF; */
+    text-align: center;
+    border: none;
+    padding: 5px;
+}
+
+.chosen-products li .description {
+    text-align: start;
+}
+
+.total-info {
+    width: 350px;
+    height: 41px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.total-info .qtd {
+    width: 15%;
+    opacity: 0;
+}
+
+.send-order {
+    width: 280px;
+    height: 41px;
+    border: none;
+    position: fixed;
+    bottom: 55px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* FORMATAÇÃO DO MODAL */
+.modal {
+    width: 400px;
+    height: 254px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px #333;
+    position: fixed;
+    left: 50%;
+    padding: 24px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+.overlay {
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+.modal h1 {
+    margin: 20px 0;
+}
+
+.modal .buttons {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.modal button {
+    width: 120px;
+    height: 44px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.confirm {
+    background-color: green;
+}
+
+.cancel {
+    background-color: red;
 }

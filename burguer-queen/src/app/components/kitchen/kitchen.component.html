@@ -1,1 +1,4 @@
-<div class="container"></div>
+<div class="container">
+    <app-principal *ngIf="showPrincipal" (toOrders)="goToOrdersStatus()"></app-principal>
+    <app-order-status *ngIf="showOrderStatus" (backToTables)="goToPrincipal()"></app-order-status>
+</div>

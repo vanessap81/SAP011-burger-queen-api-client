@@ -1,9 +1,9 @@
 <section class="menu-container">
     <header>
         <h1>Nome do cliente:</h1>
-        <div class="client-name">{{ order.name }}</div>
+        <div class="client-name">{{ infoFromTables.name }}</div>
         <h1>Mesa:</h1>
-        <div class="client-table">{{ order.table }}</div>
+        <div class="client-table">{{ infoFromTables.table }}</div>
         <a class="back" (click)="back()"><i class="bi bi-arrow-left-circle-fill"></i>Voltar</a>
     </header>
     <main>
@@ -15,9 +15,9 @@
                         <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
-                            <button class="quantityButtons">-</button>
-                            <p>{{quantity}}</p>
-                            <button class="quantityButtons">+</button>
+                            <button class="quantityButtons" (click)="removeProduct($event, product, product.price)" value="{{ product._id }}">-</button>
+                            <p >{{ product.quantity }}</p>
+                            <button class="quantityButtons" (click)="addProduct($event, product, product.price, product.name)" value="{{ product._id }}">+</button>
                         </div>
                     </li>
                 </ul>
@@ -28,21 +28,48 @@
                         <img src="{{ product.image }}" alt="">
                         <p>R$ {{ product.price }}</p>
                         <div class="quantity-container">
-                            <button class="quantityButtons">-</button>
-                            <p>{{ quantity }}</p>
-                            <button class="quantityButtons">+</button>
+                            <button class="quantityButtons" (click)="removeProduct($event, product, product.price)" value="{{ product._id }}">-</button>
+                            <p>{{ product.quantity }}</p>
+                            <button class="quantityButtons" (click)="addProduct($event, product, product.price, product.name)" value="{{ product._id }}" >+</button>
                         </div>
                     </li>
                 </ul>
         </div>
         <div class="details-screen">
             <div class="order-info">
-                <p>Qtd</p>
-                <p>Descrição</p>
-                <p>Valor</p>
+                <p class="qtd">Qtd</p>
+                <p class="description">Descrição</p>
+                <p class="price">Valor</p>
             </div>
-            <div class="selected-products">
+
+            <ul class="chosen-products" *ngIf="order.products.length !== 0">
+                <li *ngFor="let item of order.products">
+                    <p class="qtd">{{ item.quantity }}</p>
+                    <p class="description">{{ item.name }}</p>
+                    <p class="price">R$ {{ item.price }}</p>
+                </li>
+            </ul>
+
+            <div class="total-info" *ngIf="order.products.length !== 0">
+                <p class="qtd"></p>
+                <p class="description">TOTAL</p>
+                <p class="price">R$ {{ sum }}</p>
             </div>
+
+            <button class="send-order" (click)="sendThisOrder()" *ngIf="order.products.length !== 0">ENVIAR PEDIDO</button>
+
         </div>
+
+        <div class="modal-container" *ngIf="showConfirmation">
+            <div class="modal" @modal>
+                <h1>Enviar pedido para cozinha?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="confirmOrder(order)">ENVIAR</button>
+                    <button class="cancel" (click)="cancelConfirmation()">CANCELAR</button>
+                </div>
+            </div>
+            <div class="overlay" @overlay></div>
+        </div>
+
     </main>
 </section>

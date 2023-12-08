@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Login } from '../interfaces/Login';
+import { Login } from '../../interfaces/Login';
 
 import { LoginService } from './login.service';
 import { HttpClient } from '@angular/common/http';

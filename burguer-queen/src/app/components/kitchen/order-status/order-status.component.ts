@@ -1,12 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { WaiterService } from 'src/app/services/waiter/waiter.service';
+import { KitchenService } from 'src/app/services/kitchen/kitchen.service';
 import { OrderResponse } from 'src/app/interfaces/OrderResponse';
+
 @Component({
-  selector: 'app-orders-status',
-  templateUrl: './orders-status.component.html',
-  styleUrls: ['./orders-status.component.css']
+  selector: 'app-order-status',
+  templateUrl: './order-status.component.html',
+  styleUrls: ['./order-status.component.css']
 })
-export class OrdersStatusComponent implements OnInit {
+export class OrderStatusComponent implements OnInit {
 
   statuses = [
     {button: 'aguardando aceite', status: 'pending'},
@@ -25,7 +26,7 @@ export class OrdersStatusComponent implements OnInit {
   @Output() backToTables = new EventEmitter();
 
   constructor(
-    private _waiterService: WaiterService,
+    private _kitchenService: KitchenService,
   ) {}
 
   ngOnInit(): void {
@@ -34,11 +35,11 @@ export class OrdersStatusComponent implements OnInit {
   }
 
   pullOrdersList() {
-    this._waiterService.getOrders().subscribe({
-      next: (data: OrderResponse[]) => {
-        console.log(data);
+    this._kitchenService.getOrders().subscribe({
+      next: (data: any) => {
         this.allOrdersList = data;
         this.ordersByStatus = this.allOrdersList.filter((order: OrderResponse) => order.status == 'pending');
+        this.ordersByStatus.sort((a, b) => a.createdAt.localeCompare(b.createdAt) );
       }
     })
   }

@@ -6,5 +6,6 @@ export interface ProductResponse {
     type: string,
     createdAt: Date,
     updatedAt: Date,
-    __v: number
+    __v: number,
+    quantity: number
 }

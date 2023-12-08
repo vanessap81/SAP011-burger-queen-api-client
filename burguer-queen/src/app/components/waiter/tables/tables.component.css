@@ -108,6 +108,8 @@ main {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.btn-add-iten:active,
+.btn-delivered:active,
 .tables:active {
     background: #9400FF;
     box-shadow: inset 9px 9px 10px #573391,
@@ -141,23 +143,117 @@ main {
     background: rgba(255, 255, 255, 0.60);
     box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.25);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
 }
 
+.details {
+    /* width: 368px;
+    height: 572px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.60);
+    box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.25); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-add-iten,
+.btn-delivered,
 .table-detail {
     width: 332px;
     height: 41px;
     border-radius: 12px;
     background: #FFF;
     border: none;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     font-size: 1.2em;
     font-weight: bold;
-    margin-top: 15px;
+    margin-bottom: 15px;
     /* display: none; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
+}
+
+.btn-delivered {
+    justify-content: center;
+    margin-bottom: 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: green;
+    color: #FFF;
+}
+
+.btn-add-iten {
+    justify-content: center;
+    margin-bottom: 0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: solid 2px green;
+    background-color: #fff;
+    color: green;
+}
+
+/* FORMATAÇÃO DO MODAL */
+.modal {
+    width: 400px;
+    height: 254px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px #333;
+    position: fixed;
+    left: 50%;
+    padding: 24px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+.overlay {
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    opacity: 0.5;
+    z-index: 10;
+}
+
+.modal h1 {
+    margin: 20px 0;
+}
+
+.modal .buttons {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.modal button {
+    width: 120px;
+    height: 44px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.confirm {
+    background-color: green;
+}
+
+.cancel {
+    background-color: red;
 }
