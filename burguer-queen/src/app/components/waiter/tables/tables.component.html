@@ -33,12 +33,23 @@
                         <p>Última atualização: </p><p>{{ tables[selectedButton.number - 1].updatedAt.slice(11, 17) | uppercase }}</p>
                 </div>
             </div>
-            <div class="buttons" *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status === 'delivering' ">
-                <button class="btn-delivered" (click)="deliverButton()">MARCAR COMO ENTREGUE</button>
-            </div>
-            <div class="buttons" 
-                *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status !== 'free' && tables[selectedButton.number - 1].status !== 'delivering'">
-                <button class="btn-add-iten" (click)="openMenu()">ADICIONAR ITENS À MESA</button>
+
+            <div class="buttons-container">
+                <div class="buttons" *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status === 'delivering' ">
+                    <button class="btn-delivered" (click)="deliverButton()">MARCAR COMO ENTREGUE</button>
+                </div>
+
+                <div class="buttons" 
+                *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status !== 'free' && tables[selectedButton.number - 1].status === 'pending'">
+                <button class="btn-cancel-iten" (click)="callCancelOrder()">CANCELAR PEDIDO</button>
+                </div>
+    
+                <div class="buttons" 
+                    *ngIf="selectedButton.selected === true && tables[selectedButton.number - 1].status !== 'free' && tables[selectedButton.number - 1].status !== 'delivering'">
+                    <button class="btn-add-iten" (click)="openMenu()">ADICIONAR ITENS À MESA</button>
+    
+                </div>
+    
             </div>
         </div>
 
@@ -52,7 +63,20 @@
             </div>
             <div class="overlay" @overlay></div>
         </div>
+
+        <div class="modal-container" *ngIf="showCancelButton">
+            <div class="modal" @modal>
+                <h1>Cancelar pedido?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="cancelOrder(updatedStatus, selectedButton.id)">SIM</button>
+                    <button class="cancel" (click)="cancelReq()">NÃO</button>
+                </div>
+            </div>
+            <div class="overlay" @overlay></div>
+        </div>
     </main>
 </section>
 
 <!-- [class.ready]="tables[selectedButton.number - 1].status === 'delivering'" -->
+
+<!-- cancelOrder(updatedStatus, selectedButton.id) -->

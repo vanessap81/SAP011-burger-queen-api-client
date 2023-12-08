@@ -65,6 +65,8 @@ export class TablesComponent {
 
   orderData = {name: '', table: ''};
   showConfirmation: boolean = false;
+  showCheck: boolean = false;
+  showCancelButton: boolean = false;
 
   updatedStatus: UpdatedOrder = {
     userId: '',
@@ -155,12 +157,20 @@ export class TablesComponent {
     this.viewTablesStatus.emit();
   }
 
+  callCancelOrder() {
+    this.showCancelButton = true;
+  }
+
   deliverButton() {
     this.showConfirmation = true;
   }
 
   cancelConfirmation() {
     this.showConfirmation = false;
+  }
+
+  cancelReq() {
+    this.showCancelButton = false;
   }
 
   deliverOrder(order: UpdatedOrder, orderId: string) {
@@ -172,6 +182,17 @@ export class TablesComponent {
         }
       });
       this.showConfirmation = false;
+    }
+  }
+
+  cancelOrder(order: UpdatedOrder, orderId: string) {
+    if (this.tables[this.selectedButton.number - 1].status !== 'delivering' || this.tables[this.selectedButton.number - 1].status !== 'preparing' || this.tables[this.selectedButton.number - 1].status !== 'delivered') {
+      this.updatedStatus.status = 'canceled';
+      this._waiterService.updateOrderStatus(order, orderId).subscribe({
+        next: (data: UpdatedOrderResponse) => {
+          console.log(data);
+        }
+      });
     }
   }
 
