@@ -9,9 +9,15 @@
     <div class="main">
         <h1>LISTA DE PRODUTOS</h1>
         <h4>Buscar por nome</h4>
-        <input type="text">
+        <input type="text" class="search" (input)="search($event)">
         <div class="products-list">
-            
+            <ul>
+                <li *ngFor="let product of productsList">
+                    <p class="product-name">{{ product.name }}</p>
+                    <p class="product-price">R$ {{ product.price }},00</p>
+                    <p class="product-id">{{ product._id }}</p>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

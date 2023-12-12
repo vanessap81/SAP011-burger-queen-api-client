@@ -9,6 +9,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 export class ProductsComponent implements OnInit {
 
   productsList: ProductResponse[] = [];
+  selectedProducts: ProductResponse[] = [];
 
   ngOnInit(): void {
     this.getProductsList();
@@ -22,9 +23,24 @@ export class ProductsComponent implements OnInit {
     this._adminService.getProducts().subscribe({
       next: (data: ProductResponse[]) => {
         console.log(data);
+        this.productsList = data;
       }
     })
   }
 
+  search(event: Event) {
+    const target = event.target as HTMLInputElement;
+    const value = target.value.toLowerCase();
+
+    this._adminService.getProducts().subscribe({
+      next: (data: ProductResponse[]) => {
+        this.selectedProducts = data;
+      }
+    })
+
+    this.productsList = this.selectedProducts.filter((product) => {
+      return product.name.toLowerCase().includes(value);
+    })
+  }
   
 }
