@@ -1,1 +1,5 @@
-<div class="container"></div>
+<div class="container">
+    <app-options *ngIf="showOptions" (adminProducts)="adminProducts()" (adminUsers)="adminUsers()"></app-options>
+    <app-products *ngIf="showProducts"></app-products>
+    <app-users *ngIf="showUsers"></app-users>
+</div>

@@ -1,0 +1,32 @@
+.options-container {
+    width: 1024px;
+    height: 768px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 216px;
+    height: 194px;
+    margin-bottom: 40px;
+}
+
+button {
+    width: 622px;
+    height: 102px;
+    border-radius: 12px;
+    border: 1px solid rgba(111, 26, 182, 0.40);
+    background: #FFF;
+    box-shadow: 4px 8px 4px 0px rgba(0, 0, 0, 0.25);
+    color: #573391;
+
+    text-align: center;
+    font-family: Inter;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+
+    margin-top: 30px;
+}
