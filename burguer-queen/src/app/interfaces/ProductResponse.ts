@@ -4,8 +4,8 @@ export interface ProductResponse {
     price: number,
     image: string,
     type: string,
-    createdAt: Date,
-    updatedAt: Date,
+    createdAt: string,
+    updatedAt: string,
     __v: number,
     quantity: number
 }

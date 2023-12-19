@@ -2,7 +2,6 @@
     <div class="menu">
         <img src="../../../../assets/logo-removebg-white.png" alt="logo">
         <div class="buttons-wrap">
-            <button>LISTA DE PRODUTOS</button>
             <button>ADICIONAR PRODUTOS</button>
         </div>
     </div>
@@ -12,12 +11,51 @@
         <input type="text" class="search" (input)="search($event)">
         <div class="products-list">
             <ul>
+                <li class="li-header">
+                    <p class="product-name">PRODUTO</p>
+                </li>
                 <li *ngFor="let product of productsList">
                     <p class="product-name">{{ product.name }}</p>
                     <p class="product-price">R$ {{ product.price }},00</p>
-                    <p class="product-id">{{ product._id }}</p>
+                    <div class="actions">
+                        <button (click)="showDetails(product._id)">DETALHES</button>
+                        <button>EDITAR</button>
+                        <button (click)="showProductDelete(product._id)">EXCLUIR</button>
+                    </div>
                 </li>
             </ul>
         </div>
+        
+        <div class="modal-container" *ngIf="productDetails">
+            <div class="modal" @modal>
+
+                <h2>{{ selectedProductDetails.name | uppercase }}</h2>
+                <div class="details-container">
+                    <h3>id: {{ selectedProductDetails._id }}</h3>
+                    <h3>Preço: R$ {{ selectedProductDetails.price }},00</h3>
+                    <h3>Tipo: {{ selectedProductDetails.type }}</h3>
+                    <h3>Criado em: {{ selectedProductDetails.createdAt }}</h3>
+                    <h3>Última atualização em: {{ selectedProductDetails.updatedAt }}</h3>
+                <!-- adicionar imagem -->
+                </div>
+
+                <button class="cancel" (click)="closeModal()">fechar</button>
+
+            </div>
+            <div class="overlay" @overlay></div>
+        </div>
+
+        <div class="modal-container" *ngIf="productDelete">
+            <div class="modal" @modal>
+                <h1>Excluir produto?</h1>
+                <div class="buttons">
+                    <button class="confirm" (click)="delete()">SIM</button>
+                    <button class="cancel" (click)="cancelProductDelete()">CANCELAR</button>
+                </div>
+
+            </div>
+            <div class="overlay" @overlay></div>
+        </div>
+
     </div>
 </div>

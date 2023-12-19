@@ -3,7 +3,6 @@
         <img src="../../../../assets/logo-removebg-white.png" alt="logo">
         <div class="buttons-wrap">
             <button>LISTA DE FUNCIONÁRIOS</button>
-            <button>ADICIONAR FUNCIONÁRIO</button>
         </div>
     </div>
     <div class="main">
@@ -12,10 +11,12 @@
         <input type="text">
         <div class="users-list">
             <ul>
+                <li class="li-header">
+                    <p>PRODUTO</p>
+                </li>
                 <li *ngFor="let user of usersList">
                     <p>{{ user.name }}</p>
                     <p>{{ user.email }}</p>
-                    <p>{{ user._id }}</p>
                 </li>
             </ul>
         </div>

@@ -152,14 +152,32 @@ export class PrincipalComponent implements OnInit {
   }
 
   timeSince() {
-    let now = new Date().toLocaleString('pt-BR', {timeZone: 'UTC'});
-    let since = this.selectedOrderData.updatedAt;
+    // let now = new Date().toLocaleString('pt-BR', {timeZone: 'UTC'});
+    let now = new Date();
+    // let since = (this.selectedOrderData.updatedAt).replace(', ', ' ');
+    // let since = Date.parse(this.selectedOrderData.updatedAt);
+    // let since2 = new Date(since);
+    // console.log(since2);
+    // console.log(now);
+    // console.log(since);
     // parse transforma data em milisegundos
-    let nowParsed = Date.parse(now);
-    let sinceParsed = Date.parse(since);
+    // let nowParsed = new Date(now);
+    // let nowParsed = now;
+    // let sinceParsed = Date.parse(since);
+    // console.log(nowParsed);
+    // console.log(sinceParsed);
+    // let timeInPrepare = new Date(nowParsed - sinceParsed);
+
+    let dateTime = (this.selectedOrderData.updatedAt).split(', ');
+    let date = dateTime[0];
+    let time = dateTime[1];
+    let arrayDate = date.split('/');
+    let finalDate = arrayDate.reverse().join('-');
+    let since = new Date(`${finalDate}T${time}`);
+    let diference = (since.getTime() - now.getTime())/60000;
     console.log(now);
     console.log(since);
-    // let timeInPrepare = new Date(nowParsed - sinceParsed);
+    console.log(diference);
   }
 
   goToOdersStatus() {
